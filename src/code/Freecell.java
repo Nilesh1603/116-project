@@ -20,10 +20,19 @@ public class Freecell {
 	public void TableauPile() {
 
 		int count = 0;
-		for (int i = 0; i < 8; i++) {
+		for (int i = 0; i < 4; i++) {
 			ArrayList<Card> a = new ArrayList<Card>();
 
 			for (int j = 0; j < 7; j++) {
+				a.add(y[count]);
+				count++;
+			}
+			Tableau.add(a);
+		}
+		for (int i = 4; i < 8; i++) {
+			ArrayList<Card> a = new ArrayList<Card>();
+
+			for (int j = 0; j < 6; j++) {
 				a.add(y[count]);
 				count++;
 			}
