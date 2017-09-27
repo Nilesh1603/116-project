@@ -120,11 +120,11 @@ public class Freecell {
 	public boolean addtotab(Card a, int c, int d) {
 
 		if ((Tableau.get(c).get(d).getSuit().equals("Spade")
-				|| Tableau.get(c).get(d).getSuit().equals("Clover") && a.getSuit().equals("Diamond")
+				|| Tableau.get(c).get(d).getSuit().equals("Club") && a.getSuit().equals("Diamond")
 				|| a.getSuit().equals("Heart"))
 				|| (Tableau.get(c).get(d).getSuit().equals("Heart")
 						|| Tableau.get(c).get(d).getSuit().equals("Diamond") && a.getSuit().equals("Spade")
-						|| a.getSuit().equals("Clover"))) {
+						|| a.getSuit().equals("Club"))) {
 			if (Tableau.get(c).get(d).getRank() - a.getRank() == 1) {
 				Tableau.get(c).add(a);
 				return true;

@@ -28,16 +28,21 @@ public class BakersDozengame {
 			for (int j = 0; j < 4; j++) {
 				a.add(y[count]);
 				count++;
-
 			}
 
-			for (int j = 1; j < 4; j++) {
-				Card aa = a.get(j);
-				if (aa.getRank() == 13) {
-					Card temp = a.get(j);
-					a.set(j, a.get(0));
-					a.set(0, temp);
-				}
+			Card aa = a.get(3);
+			if (aa.getRank() == 13 && a.get(0).getRank() != 13) {
+				Card temp = a.get(3);
+				a.set(3, a.get(0));
+				a.set(0, temp);
+			} else if (aa.getRank() == 13 && a.get(1).getRank() != 13) {
+				Card temp = a.get(3);
+				a.set(3, a.get(1));
+				a.set(1, temp);
+			} else if (aa.getRank() == 13 && a.get(2).getRank() != 13) {
+				Card temp = a.get(3);
+				a.set(3, a.get(2));
+				a.set(2, temp);
 			}
 			Tableau.add(a);
 		}

@@ -24,7 +24,7 @@ public class Deck {
 			j++;
 		}
 		for (int i = 1; i < 14; i++) {
-			deck[j] = new Card(Clover(), i);
+			deck[j] = new Card(Club(), i);
 			j++;
 		}
 		for (int i = 1; i < 14; i++) {
@@ -42,8 +42,8 @@ public class Deck {
 
 	}
 
-	public String Clover() {
-		return "Clover";
+	public String Club() {
+		return "Club";
 
 	}
 
