@@ -54,7 +54,9 @@ public class BakersDozengame {
 
 	}
 
-	public void tabremove(int a, int b, int c, int d) {
+	public void tabremove(int a, int b, int c, int d)// d is size-1 of the c tab
+														// pile
+	{
 
 		if (b == Tableau.get(a).size()) {
 			Card aa = Tableau.get(a).get(b);
@@ -85,6 +87,11 @@ public class BakersDozengame {
 	}
 
 	public boolean addtotab(Card a, int c, int d) {
+		if (Tableau.get(c).get(d).getRank() - a.getRank() == 1) {
+			Tableau.get(c).add(a);
+			return true;
+		}
+
 		return false;
 
 	}
@@ -94,11 +101,6 @@ public class BakersDozengame {
 			ArrayList<Card> a = new ArrayList<Card>();
 			HomeCell.add(a);
 		}
-
-	}
-
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 
 	}
 
