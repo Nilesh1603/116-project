@@ -163,4 +163,24 @@ public class Freecell {
 
 	}
 
+	public Card GetCardTab(int a, int b) {
+		if (Tableau.get(a).get(b) != null && !Tableau.isEmpty())
+			return Tableau.get(a).get(b);
+		return null;
+	}
+
+	public Card GetCardHome(int a, int b) {
+		if (HomeCell.get(a).get(b) != null)
+			return HomeCell.get(a).get(b);
+
+		return null;
+	}
+
+	public Card GetCardFree(int a, int b) {
+		if (FreeCell.get(a).get(b) != null)
+			return FreeCell.get(a).get(b);
+
+		return null;
+	}
+
 }
