@@ -7,17 +7,20 @@ import java.util.ArrayList;
 //x
 public class BakersDozengame {
 	private Card[] y;
+	private ArrayList<ArrayList<Card>> Tableau;
+	private ArrayList<ArrayList<Card>> HomeCell;
 
 	// 13 diff arraylists, decks already shuffled
 	// arraylist of card arraylists
-	public void newShuffleDeck() {
+	public BakersDozengame() {
 		Deck A = new Deck();
 		y = A.deck;
-
+		Tableau = new ArrayList<ArrayList<Card>>();
+		HomeCell = new ArrayList<ArrayList<Card>>();
 	}
 
 	public void dealToTableauPile() {
-		ArrayList<ArrayList<Card>> Tableau = new ArrayList<ArrayList<Card>>();
+
 		int count = 0;
 		for (int i = 0; i < 13; i++) {
 			ArrayList<Card> a = new ArrayList<Card>();
@@ -41,7 +44,56 @@ public class BakersDozengame {
 
 	}
 
+	public void tabremove(int a, int b, int c) {
+
+		if (b == Tableau.get(a).size()) {
+			Card aa = Tableau.get(a).get(b);
+			if (addtohom(aa, c))
+				Tableau.get(a).remove(b);
+		}
+
+	}
+
+	public void tabremove(int a, int b, int c, int d) {
+
+		if (b == Tableau.get(a).size()) {
+			Card aa = Tableau.get(a).get(b);
+			if (addtotab(aa, c, d))
+				Tableau.get(a).remove(b);
+		}
+
+	}
+
+	private boolean addtohom(Card aa, int a) {
+		if (HomeCell.get(a).isEmpty()) {
+			if (aa.getRank() == 0) {
+				HomeCell.get(a).add(aa);
+				return true;
+			} else
+				return false;
+		} else {
+			if (aa.getSuit().equals(HomeCell.get(a).get((HomeCell.get(a).size()) - 1).getSuit())
+					&& aa.getRank() - HomeCell.get(a).get((HomeCell.get(a).size()) - 1).getRank() == 1) {
+				HomeCell.get(a).add(aa);
+				return true;
+			} else
+				return false;
+		}
+
+		// TODO Auto-generated method stub
+
+	}
+
+	public boolean addtotab(Card a, int c, int d) {
+		return false;
+
+	}
+
 	public void Homecell() {
+		for (int j = 0; j < 4; j++) {
+			ArrayList<Card> a = new ArrayList<Card>();
+			HomeCell.add(a);
+		}
 
 	}
 
