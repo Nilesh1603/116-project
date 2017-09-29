@@ -7,8 +7,8 @@ import java.util.ArrayList;
 //x
 public class BakersDozengame {
 	private Card[] y;
-	private ArrayList<ArrayList<Card>> Tableau;
-	private ArrayList<ArrayList<Card>> HomeCell;
+	public ArrayList<ArrayList<Card>> Tableau;
+	public ArrayList<ArrayList<Card>> HomeCell;
 
 	// 13 diff arraylists, decks already shuffled
 	// arraylist of card arraylists

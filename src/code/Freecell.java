@@ -5,9 +5,9 @@ import java.util.ArrayList;
 public class Freecell {
 
 	private Card[] y;
-	private ArrayList<ArrayList<Card>> Tableau;
-	private ArrayList<ArrayList<Card>> HomeCell;
-	private ArrayList<ArrayList<Card>> FreeCell;
+	public ArrayList<ArrayList<Card>> Tableau;
+	public ArrayList<ArrayList<Card>> HomeCell;
+	public ArrayList<ArrayList<Card>> FreeCell;
 
 	public Freecell() {
 		Deck A = new Deck();
@@ -15,6 +15,10 @@ public class Freecell {
 		Tableau = new ArrayList<ArrayList<Card>>();
 		HomeCell = new ArrayList<ArrayList<Card>>();
 		FreeCell = new ArrayList<ArrayList<Card>>();
+		TableauPile();
+		Freecell();
+		Homecell();
+		
 	}
 
 	public void TableauPile() {
@@ -155,7 +159,7 @@ public class Freecell {
 
 	}
 
-	public void Freeecell() {
+	public void Freecell() {
 		for (int j = 0; j < 4; j++) {
 			ArrayList<Card> a = new ArrayList<Card>();
 			FreeCell.add(a);
