@@ -12,7 +12,7 @@ public class Deck {
 	}
 	// @ co-author Mark & Nilesh
 
-	public Deck getDeck() {
+	public Card[] getDeck() {
 
 		int j = 0;
 		for (int i = 1; i < 14; i++) {
@@ -33,7 +33,7 @@ public class Deck {
 		}
 
 		unique();
-		return this;
+		return deck;
 	}
 
 	// @Mark

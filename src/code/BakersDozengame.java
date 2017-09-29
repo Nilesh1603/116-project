@@ -14,7 +14,7 @@ public class BakersDozengame {
 	// arraylist of card arraylists
 	public BakersDozengame() {
 		Deck A = new Deck();
-		y = A.deck;
+		y = A.getDeck();
 		Tableau = new ArrayList<ArrayList<Card>>();
 		HomeCell = new ArrayList<ArrayList<Card>>();
 	}

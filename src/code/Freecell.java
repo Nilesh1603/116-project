@@ -11,7 +11,7 @@ public class Freecell {
 
 	public Freecell() {
 		Deck A = new Deck();
-		y = A.deck;
+		y = A.getDeck();
 		Tableau = new ArrayList<ArrayList<Card>>();
 		HomeCell = new ArrayList<ArrayList<Card>>();
 		FreeCell = new ArrayList<ArrayList<Card>>();
