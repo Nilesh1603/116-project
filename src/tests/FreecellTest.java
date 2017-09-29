@@ -12,8 +12,10 @@ public class FreecellTest {
 	
 	@Test
 	public void checkTableauPiles(){
+		
 		Freecell a= new Freecell();
 		assertEquals("CheckTableauPile.size()", 8, a.Tableau.size());
+	
 		
 	}
 	
