@@ -51,7 +51,7 @@ public class BakersDozengame {
 
 	}
 
-	public void tabremove(int a, int b, int c) {
+	public void tabremovetoHome(int a, int b, int c) {
 
 		if (b == Tableau.get(a).size()) {
 			Card aa = Tableau.get(a).get(b);
@@ -61,8 +61,9 @@ public class BakersDozengame {
 
 	}
 
-	public void tabremove(int a, int b, int c, int d)// d is size-1 of the c tab
-														// pile
+	public void tabremovetoTab(int a, int b, int c, int d)// d is size-1 of the
+															// c tab
+															// pile
 	{
 
 		if (b == Tableau.get(a).size()) {
