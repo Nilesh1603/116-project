@@ -51,26 +51,40 @@ public class BakersDozengame {
 
 	}
 
-	public void tabremovetoHome(int a, int b, int c) {
+	public boolean tabremovetoHome(int a, int b, int c) {
 
-		if (b == Tableau.get(a).size()) {
-			Card aa = Tableau.get(a).get(b);
-			if (addtohom(aa, c))
-				Tableau.get(a).remove(b);
+		if (Tableau.get(a).get(b) != null
+				&& Tableau.get(a).get(b).equals(Tableau.get(a).get(Tableau.get(a).size() - 1))) {
+			if (b == Tableau.get(a).size() - 1) {
+				Card aa = Tableau.get(a).get(b);
+				if (addtohom(aa, c)) {
+					Tableau.get(a).remove(b);
+
+				}
+			}
+			return true;
 		}
+		return false;
 
 	}
 
-	public void tabremovetoTab(int a, int b, int c, int d)// d is size-1 of the
-															// c tab
-															// pile
+	public boolean tabremovetoTab(int a, int b, int c, int d)// d is size-1 of
+	// the
+	// c tab
+	// pile
 	{
 
-		if (b == Tableau.get(a).size()) {
-			Card aa = Tableau.get(a).get(b);
-			if (addtotab(aa, c, d))
-				Tableau.get(a).remove(b);
+		if (Tableau.get(a).get(b) != null
+				&& Tableau.get(a).get(b).equals(Tableau.get(a).get(Tableau.get(a).size() - 1))) {
+			if (b == Tableau.get(a).size() - 1) {
+				Card aa = Tableau.get(a).get(b);
+				if (addtotab(aa, c, d)) {
+					Tableau.get(a).remove(b);
+				}
+			}
+			return true;
 		}
+		return false;
 
 	}
 
@@ -99,7 +113,8 @@ public class BakersDozengame {
 			Tableau.get(c).add(a);
 			return true;
 		}
-
+		if (Tableau.get(c).isEmpty())
+			return true;
 		return false;
 
 	}

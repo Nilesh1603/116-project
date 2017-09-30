@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Freecell {
 
-	private Card[] y;
+	public Card[] y;
 	public ArrayList<ArrayList<Card>> Tableau;
 	public ArrayList<ArrayList<Card>> HomeCell;
 	public ArrayList<ArrayList<Card>> FreeCell;
@@ -16,9 +16,9 @@ public class Freecell {
 		HomeCell = new ArrayList<ArrayList<Card>>();
 		FreeCell = new ArrayList<ArrayList<Card>>();
 		TableauPile();
-		Freecell();
+		FreeCell();
 		Homecell();
-		
+
 	}
 
 	public void TableauPile() {
@@ -45,49 +45,68 @@ public class Freecell {
 
 	}
 
-	public void tabremove(int a, int b, int c) {
+	public boolean tabremovetoHome(int a, int b, int c) {
 
-		if (b == Tableau.get(a).size()) {
-			Card aa = Tableau.get(a).get(b);
-			if (addtohom(aa, c))
-				Tableau.get(a).remove(b);
-		}
+		if (Tableau.get(a).get(b) != null
+				&& Tableau.get(a).get(b).equals(Tableau.get(a).get(Tableau.get(a).size() - 1))) {
+			if (b == Tableau.get(a).size() - 1) {
+				Card aa = Tableau.get(a).get(b);
+				if (addtohom(aa, c)) {
+					Tableau.get(a).remove(b);
 
-	}
-
-	public void tabremove(int a, int b) {
-
-		if (b == Tableau.get(a).size()) {
-			Card aa = Tableau.get(a).get(b);
-			if (addtofree(aa))
-				Tableau.get(a).remove(b);
-		}
-
-	}
-
-	public void tabremove(int a, int b, int c, int d)// d is size-1 of the c tab
-														// pile
-	{
-
-		if (b == Tableau.get(a).size()) {
-			Card aa = Tableau.get(a).get(b);
-			if (addtotab(aa, c, d))
-				Tableau.get(a).remove(b);
-		}
-
-	}
-
-	private boolean addtofree(Card aa) {
-
-		for (int i = 0; i < 4; i++) {
-
-			if (FreeCell.get(i).isEmpty()) {
-				FreeCell.get(i).add(aa);
-				return true;
-			} else
-				return false;
+				}
+			}
+			return true;
 		}
 		return false;
+
+	}
+
+	public boolean tabremovetoFree(int a, int b, int c) {
+		if (Tableau.get(a).get(b) != null
+				&& Tableau.get(a).get(b).equals(Tableau.get(a).get(Tableau.get(a).size() - 1))) {
+			if (b == Tableau.get(a).size() - 1) {
+				Card aa = Tableau.get(a).get(b);
+				if (addtofree(aa, c)) {
+					Tableau.get(a).remove(b);
+
+				}
+			}
+
+			return true;
+		}
+		return false;
+
+	}
+
+	public boolean tabremovetoTab(int a, int b, int c, int d)// d is size-1 of
+																// the
+																// c tab
+																// pile
+	{
+
+		if (Tableau.get(a).get(b) != null
+				&& Tableau.get(a).get(b).equals(Tableau.get(a).get(Tableau.get(a).size() - 1))) {
+			if (b == Tableau.get(a).size() - 1) {
+				Card aa = Tableau.get(a).get(b);
+				if (addtotab(aa, c, d)) {
+					Tableau.get(a).remove(b);
+				}
+			}
+			return true;
+		}
+		return false;
+
+	}
+
+	public boolean addtofree(Card aa, int i) {
+
+		if (FreeCell.get(i).isEmpty()) {
+			FreeCell.get(i).add(aa);
+			return true;
+		} else
+			return false;
+
 	}
 
 	public void freeremove(int a, int b, int c) {
@@ -110,7 +129,7 @@ public class Freecell {
 
 	}
 
-	private boolean addtohom(Card aa, int a) {
+	public boolean addtohom(Card aa, int a) {
 		if (HomeCell.get(a).isEmpty()) {
 			if (aa.getRank() == 0) {
 				HomeCell.get(a).add(aa);
@@ -132,12 +151,11 @@ public class Freecell {
 
 	public boolean addtotab(Card a, int c, int d) {
 
-		if ((Tableau.get(c).get(d).getSuit().equals("Spade")
-				|| Tableau.get(c).get(d).getSuit().equals("Club") && a.getSuit().equals("Diamond")
-				|| a.getSuit().equals("Heart"))
-				|| (Tableau.get(c).get(d).getSuit().equals("Heart")
-						|| Tableau.get(c).get(d).getSuit().equals("Diamond") && a.getSuit().equals("Spade")
-						|| a.getSuit().equals("Club"))) {
+		if (((Tableau.get(c).get(d).getSuit().equals("Spade") || Tableau.get(c).get(d).getSuit().equals("Club"))
+				&& (a.getSuit().equals("Diamond") || a.getSuit().equals("Heart")))
+				|| (((Tableau.get(c).get(d).getSuit().equals("Heart")
+						|| Tableau.get(c).get(d).getSuit().equals("Diamond"))
+						&& (a.getSuit().equals("Spade") || a.getSuit().equals("Club"))))) {
 			if (Tableau.get(c).get(d).getRank() - a.getRank() == 1) {
 				Tableau.get(c).add(a);
 				return true;
@@ -159,7 +177,7 @@ public class Freecell {
 
 	}
 
-	public void Freecell() {
+	public void FreeCell() {
 		for (int j = 0; j < 4; j++) {
 			ArrayList<Card> a = new ArrayList<Card>();
 			FreeCell.add(a);
