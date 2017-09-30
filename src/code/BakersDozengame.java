@@ -17,6 +17,8 @@ public class BakersDozengame {
 		y = A.getDeck();
 		Tableau = new ArrayList<ArrayList<Card>>();
 		HomeCell = new ArrayList<ArrayList<Card>>();
+		dealToTableauPile();
+		Homecell();
 	}
 
 	public void dealToTableauPile() {
