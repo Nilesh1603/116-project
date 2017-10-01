@@ -11,7 +11,7 @@ import code.Freecell;
 public class HomeCelltest {
 
 	@Test
-	public void checkTableauPilesInFreeCell() {
+	public void checkHomeCellPilesInFreeCell() {
 		Freecell a = new Freecell();
 		Boolean check = false;
 		for (int i = 0; i < 4; i++) {
@@ -27,7 +27,7 @@ public class HomeCelltest {
 	}
 
 	@Test
-	public void checkTableauPilesInBakers() {
+	public void checkHomeCellPilesInBakers() {
 		BakersDozengame a = new BakersDozengame();
 		Boolean check = false;
 		for (int i = 0; i < 4; i++) {
