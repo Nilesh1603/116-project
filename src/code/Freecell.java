@@ -45,59 +45,43 @@ public class Freecell {
 
 	}
 
-	public boolean tabremovetoHome(int a, int b, int c) {
+	public boolean tabremove(int a, int b) {
 
 		if (Tableau.get(a).get(b) != null
 				&& Tableau.get(a).get(b).equals(Tableau.get(a).get(Tableau.get(a).size() - 1))) {
 			if (b == Tableau.get(a).size() - 1) {
-				Card aa = Tableau.get(a).get(b);
-				if (addtohom(aa, c)) {
-					Tableau.get(a).remove(b);
-
-				}
+				Tableau.get(a).remove(b);
+				return true;
 			}
-			return true;
 		}
 		return false;
 
 	}
 
-	public boolean tabremovetoFree(int a, int b, int c) {
-		if (Tableau.get(a).get(b) != null
-				&& Tableau.get(a).get(b).equals(Tableau.get(a).get(Tableau.get(a).size() - 1))) {
-			if (b == Tableau.get(a).size() - 1) {
-				Card aa = Tableau.get(a).get(b);
-				if (addtofree(aa, c)) {
-					Tableau.get(a).remove(b);
-
-				}
-			}
-
-			return true;
-		}
-		return false;
-
-	}
-
-	public boolean tabremovetoTab(int a, int b, int c, int d)// d is size-1 of
-																// the
-																// c tab
-																// pile
-	{
-
-		if (Tableau.get(a).get(b) != null
-				&& Tableau.get(a).get(b).equals(Tableau.get(a).get(Tableau.get(a).size() - 1))) {
-			if (b == Tableau.get(a).size() - 1) {
-				Card aa = Tableau.get(a).get(b);
-				if (addtotab(aa, c, d)) {
-					Tableau.get(a).remove(b);
-				}
-			}
-			return true;
-		}
-		return false;
-
-	}
+	/*
+	 * public boolean tabremovetoFree(int a, int b, int c) { if
+	 * (Tableau.get(a).get(b) != null &&
+	 * Tableau.get(a).get(b).equals(Tableau.get(a).get(Tableau.get(a).size() -
+	 * 1))) { if (b == Tableau.get(a).size() - 1) { Card aa =
+	 * Tableau.get(a).get(b); if (addtofree(aa, c)) { Tableau.get(a).remove(b);
+	 * 
+	 * } }
+	 * 
+	 * return true; } return false;
+	 * 
+	 * }
+	 * 
+	 * public boolean tabremovetoTab(int a, int b, int c, int d)// d is size-1
+	 * of // the // c tab // pile {
+	 * 
+	 * if (Tableau.get(a).get(b) != null &&
+	 * Tableau.get(a).get(b).equals(Tableau.get(a).get(Tableau.get(a).size() -
+	 * 1))) { if (b == Tableau.get(a).size() - 1) { Card aa =
+	 * Tableau.get(a).get(b); if (addtotab(aa, c, d)) {
+	 * Tableau.get(a).remove(b); } } return true; } return false;
+	 * 
+	 * }
+	 */
 
 	public boolean addtofree(Card aa, int i) {
 
@@ -109,26 +93,24 @@ public class Freecell {
 
 	}
 
-	public void freeremove(int a, int b, int c) {
+	public boolean freeremove(int a) {
 
 		if (FreeCell.get(a) != null && !FreeCell.get(a).isEmpty()) {
-			Card aa = FreeCell.get(a).get(0);
-			if (addtotab(aa, b, c))
-				FreeCell.get(a).remove(0);
-		}
 
+			FreeCell.get(a).remove(0);
+			return true;
+		}
+		return false;
 	}
 
-	public void freeremove(int a, int b) {
-
-		if (FreeCell.get(a) != null && !FreeCell.get(a).isEmpty()) {
-			Card aa = FreeCell.get(a).get(0);
-			if (addtohom(aa, b))
-				FreeCell.get(a).remove(0);
-		}
-
-	}
-
+	/*
+	 * public void freeremove(int a, int b) {
+	 * 
+	 * if (FreeCell.get(a) != null && !FreeCell.get(a).isEmpty()) { Card aa =
+	 * FreeCell.get(a).get(0); if (addtohom(aa, b)) FreeCell.get(a).remove(0); }
+	 * 
+	 * }
+	 */
 	public boolean addtohom(Card aa, int a) {
 		if (HomeCell.get(a).isEmpty()) {
 			if (aa.getRank() == 0) {
@@ -177,12 +159,27 @@ public class Freecell {
 
 	}
 
+	public boolean removeHomecell(int a) {
+		return false;
+
+	}
+
 	public void FreeCell() {
 		for (int j = 0; j < 4; j++) {
 			ArrayList<Card> a = new ArrayList<Card>();
 			FreeCell.add(a);
 		}
 
+	}
+
+	public Card GetTopCardTab(int a) {
+
+		return Tableau.get(a).get(Tableau.get(a).size() - 1);
+
+	}
+
+	public Card GetTopCardHome(int a) {
+		return HomeCell.get(a).get(HomeCell.get(a).size() - 1);
 	}
 
 	public Card GetCardTab(int a, int b) {

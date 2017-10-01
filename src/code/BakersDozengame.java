@@ -6,7 +6,7 @@ import java.util.ArrayList;
 //@author Nabeel
 //x
 public class BakersDozengame {
-	private Card[] y;
+	public Card[] y;
 	public ArrayList<ArrayList<Card>> Tableau;
 	public ArrayList<ArrayList<Card>> HomeCell;
 
@@ -51,44 +51,33 @@ public class BakersDozengame {
 
 	}
 
-	public boolean tabremovetoHome(int a, int b, int c) {
+	public boolean tabremove(int a, int b) {
 
 		if (Tableau.get(a).get(b) != null
 				&& Tableau.get(a).get(b).equals(Tableau.get(a).get(Tableau.get(a).size() - 1))) {
 			if (b == Tableau.get(a).size() - 1) {
-				Card aa = Tableau.get(a).get(b);
-				if (addtohom(aa, c)) {
-					Tableau.get(a).remove(b);
-
-				}
+				Tableau.get(a).remove(b);
+				return true;
 			}
-			return true;
 		}
+
 		return false;
 
 	}
+	/*
+	 * public boolean tabremovetoTab(int a, int b, int c, int d)// d is size-1
+	 * of // the // c tab // pile {
+	 * 
+	 * if (Tableau.get(a).get(b) != null &&
+	 * Tableau.get(a).get(b).equals(Tableau.get(a).get(Tableau.get(a).size() -
+	 * 1))) { if (b == Tableau.get(a).size() - 1) { Card aa =
+	 * Tableau.get(a).get(b); if (addtotab(aa, c, d)) {
+	 * Tableau.get(a).remove(b); } } return true; } return false;
+	 * 
+	 * }
+	 */
 
-	public boolean tabremovetoTab(int a, int b, int c, int d)// d is size-1 of
-	// the
-	// c tab
-	// pile
-	{
-
-		if (Tableau.get(a).get(b) != null
-				&& Tableau.get(a).get(b).equals(Tableau.get(a).get(Tableau.get(a).size() - 1))) {
-			if (b == Tableau.get(a).size() - 1) {
-				Card aa = Tableau.get(a).get(b);
-				if (addtotab(aa, c, d)) {
-					Tableau.get(a).remove(b);
-				}
-			}
-			return true;
-		}
-		return false;
-
-	}
-
-	private boolean addtohom(Card aa, int a) {
+	public boolean addtohom(Card aa, int a) {
 		if (HomeCell.get(a).isEmpty()) {
 			if (aa.getRank() == 0) {
 				HomeCell.get(a).add(aa);
@@ -125,6 +114,21 @@ public class BakersDozengame {
 			HomeCell.add(a);
 		}
 
+	}
+
+	public boolean removeHomecell(int a) {
+		return false;
+
+	}
+
+	public Card GetTopCardTab(int a) {
+
+		return Tableau.get(a).get(Tableau.get(a).size() - 1);
+
+	}
+
+	public Card GetTopCardHome(int a) {
+		return HomeCell.get(a).get(HomeCell.get(a).size() - 1);
 	}
 
 	public Card GetCardTab(int a, int b) {
