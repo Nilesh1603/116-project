@@ -95,15 +95,18 @@ public class HomeCelltest {
 	@Test
 	public void HomeCellAddIncreaseInNOCheckBakers() {
 		BakersDozengame a = new BakersDozengame();
+		Card second = a.GetTopCardTab(2);
+		int size = a.HomeCell.get(2).size();
+		a.addtohom(second, 2);
 
-		Card first = a.GetCardTab(2, 3);
-		Card second = a.GetCardTab(1, 3);
-
-		if ((first.getRank() - second.getRank() == 1 && first.getRank() > second.getRank())
-				&& first.getSuit().equals(second.getSuit())) {
-			assertTrue(a.addtohom(first, 1));
-		} else
-			assertFalse(a.addtohom(first, 1));
+		if (a.HomeCell.get(0).isEmpty()) {
+			if (second.getRank() == 0) {
+				assertEquals(size + 1, a.HomeCell.get(2).size());
+			}
+		} else if (a.GetCardHome(2, a.HomeCell.size() - 2).getSuit().equals(second.getSuit())
+				&& second.getRank() - a.GetCardHome(2, a.HomeCell.size() - 2).getRank() == 1) {
+			assertEquals(size + 1, a.HomeCell.get(2).size());
+		}
 
 	}
 
@@ -111,15 +114,18 @@ public class HomeCelltest {
 	public void HomeCellAddIncreaseInNOCheckHomecell() {
 		Freecell a = new Freecell();
 
-		Card first = a.GetCardTab(2, 3);
-		Card second = a.GetCardTab(1, 3);
+		Card second = a.GetTopCardTab(2);
+		int size = a.HomeCell.get(2).size();
+		a.addtohom(second, 2);
 
-		if ((first.getRank() - second.getRank() == 1 && first.getRank() > second.getRank())
-				&& first.getSuit().equals(second.getSuit())) {
-			assertTrue(a.addtohom(first, 1));
-		} else
-			assertFalse(a.addtohom(first, 1));
+		if (a.HomeCell.get(0).isEmpty()) {
+			if (second.getRank() == 0) {
+				assertEquals(size + 1, a.HomeCell.get(2).size());
+			}
+		} else if (a.GetCardHome(2, a.HomeCell.size() - 2).getSuit().equals(second.getSuit())
+				&& second.getRank() - a.GetCardHome(2, a.HomeCell.size() - 2).getRank() == 1) {
+			assertEquals(size + 1, a.HomeCell.get(2).size());
+		}
 
 	}
-
 }

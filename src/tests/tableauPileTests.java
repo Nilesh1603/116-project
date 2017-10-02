@@ -49,19 +49,12 @@ public class tableauPileTests {
 
 		Card first = a.GetCardTab(2, 3);
 		Card second = a.GetCardTab(1, 3);
-		Boolean check = false;
-		if (second.getRank() - first.getRank() == 1 && first.getRank() < second.getRank()) {
-			check = true;
-		}
 
-		if ((check && a.addtotab(first, 1, 3))) {
-			assertTrue(true);
-		} else if (check)
-			assertTrue(false);
-		else if (a.addtotab(first, 1, 3))
-			assertTrue(false);
-		else
-			assertTrue(true);
+		if (second.getRank() - first.getRank() == 1 && first.getRank() < second.getRank()) {
+			assertTrue(a.addtotab(first, 1, 3));
+		} else
+			assertFalse(a.addtotab(first, 1, 3));
+
 	}
 
 	@Test
@@ -70,24 +63,22 @@ public class tableauPileTests {
 
 		Card first = a.GetCardTab(2, 3);
 		Card second = a.GetCardTab(1, 3);
-		Boolean check = false;
+
 		if (second.getRank() - first.getRank() == 1 && first.getRank() < second.getRank()) {
 			if (((first.getSuit().equals("Spade") || first.getSuit().equals("Club"))
 					&& (second.getSuit().equals("Diamond") || second.getSuit().equals("Heart")))
 					|| (((first.getSuit().equals("Heart") || first.getSuit().equals("Diamond"))
 							&& (second.getSuit().equals("Spade") || second.getSuit().equals("Club")))))
-				check = true;
-		} else if (a.Tableau.get(1).isEmpty())
-			check = true;
 
-		if ((check && a.addtotab(first, 1, 3))) {
-			assertTrue(true);
-		} else if (check)
-			assertTrue(false);
-		else if (a.addtotab(first, 1, 3))
-			assertTrue(false);
-		else
-			assertTrue(true);
+				assertTrue(a.addtotab(first, 1, 3));
+
+		} else if (a.Tableau.get(1).isEmpty()) {
+
+			assertTrue(a.addtotab(first, 1, 3));
+
+		} else {
+			assertFalse(a.addtotab(first, 1, 3));
+		}
 	}
 
 	@Test
