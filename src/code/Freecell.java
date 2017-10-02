@@ -51,6 +51,12 @@ public class Freecell {
 		}
 
 	}
+/**
+ *  Sets rules for removing a card from a Tableau
+ * @param a Card rank
+ * @param b	Card suit
+ * @return true if Card can be removed
+ */
 
 	public boolean tabremove(int a, int b) {
 
@@ -89,7 +95,12 @@ public class Freecell {
 	 * 
 	 * }
 	 */
-
+/**
+ * Allows for a card to be removed from a pile and stored outside of any pile 
+ * @param aa
+ * @param i
+ * @return true if Card can be added to free
+ */
 	public boolean addtofree(Card aa, int i) {
 
 		if (FreeCell.get(i).isEmpty()) {
