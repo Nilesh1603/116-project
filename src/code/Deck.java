@@ -6,12 +6,17 @@ import java.util.Collections;
 public class Deck {
 
 	Card[] deck;
-
+/**
+ * creates a new deck with 52 cards by calling the Card.java
+ */
 	public Deck() {
 		deck = new Card[52];
 	}
 	// @ co-author Mark & Nilesh
-
+/**
+ * 
+ * @return adds suits to the deck with 14 cards each
+ */
 	public Card[] getDeck() {
 
 		int j = 0;

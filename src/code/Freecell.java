@@ -3,12 +3,16 @@ package code;
 import java.util.ArrayList;
 
 public class Freecell {
-
+/**
+ *  This class Defines the Freecell portion
+ */
 	public Card[] y;
 	public ArrayList<ArrayList<Card>> Tableau;
 	public ArrayList<ArrayList<Card>> HomeCell;
 	public ArrayList<ArrayList<Card>> FreeCell;
-
+/**
+ * Creates and adds deck of cards
+ */
 	public Freecell() {
 		Deck A = new Deck();
 		y = A.getDeck();
@@ -20,6 +24,9 @@ public class Freecell {
 		Homecell();
 
 	}
+/**
+ *  Creates homecell and free cell piles
+ */
 
 	public void TableauPile() {
 
