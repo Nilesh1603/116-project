@@ -3,16 +3,17 @@ package code;
 import java.util.ArrayList;
 
 public class Freecell {
-/**
- *  This class Defines the Freecell portion
- */
+	/**
+	 * This class Defines the Freecell portion
+	 */
 	public Card[] y;
 	public ArrayList<ArrayList<Card>> Tableau;
 	public ArrayList<ArrayList<Card>> HomeCell;
 	public ArrayList<ArrayList<Card>> FreeCell;
-/**
- * Creates and adds deck of cards
- */
+
+	/**
+	 * Creates and adds deck of cards
+	 */
 	public Freecell() {
 		Deck A = new Deck();
 		y = A.getDeck();
@@ -24,9 +25,10 @@ public class Freecell {
 		Homecell();
 
 	}
-/**
- *  Creates homecell and free cell piles
- */
+
+	/**
+	 * Creates homecell and free cell piles
+	 */
 
 	public void TableauPile() {
 
@@ -51,12 +53,16 @@ public class Freecell {
 		}
 
 	}
-/**
- *  Sets rules for removing a card from a Tableau
- * @param a Card rank
- * @param b	Card suit
- * @return true if Card can be removed
- */
+
+	/**
+	 * Sets rules for removing a card from a Tableau
+	 * 
+	 * @param a
+	 *            Card rank
+	 * @param b
+	 *            Card suit
+	 * @return true if Card can be removed
+	 */
 
 	public boolean tabremove(int a, int b) {
 
@@ -95,12 +101,14 @@ public class Freecell {
 	 * 
 	 * }
 	 */
-/**
- * Allows for a card to be removed from a pile and stored outside of any pile 
- * @param aa
- * @param i
- * @return true if Card can be added to free
- */
+	/**
+	 * Allows for a card to be removed from a pile and stored outside of any
+	 * pile
+	 * 
+	 * @param aa
+	 * @param i
+	 * @return true if Card can be added to free
+	 */
 	public boolean addtofree(Card aa, int i) {
 
 		if (FreeCell.get(i).isEmpty()) {

@@ -23,6 +23,7 @@ public class BakersDozengame {
 		dealToTableauPile();
 		Homecell();
 	}
+
 	/**
 	 * deals cards to Tableau Pile
 	 */
@@ -55,12 +56,13 @@ public class BakersDozengame {
 		}
 
 	}
-/**
- * 
- * @param a
- * @param b
- * @return true if the card is removed
- */
+
+	/**
+	 * 
+	 * @param a
+	 * @param b
+	 * @return true if the card is removed
+	 */
 	public boolean tabremove(int a, int b) {
 
 		if (Tableau.get(a).get(b) != null
@@ -86,14 +88,14 @@ public class BakersDozengame {
 	 * 
 	 * }
 	 */
-	
+
 	/**
 	 * 
 	 * @param aa
 	 * @param a
 	 * @return true if specific card is added to home
 	 */
- 
+
 	public boolean addtohom(Card aa, int a) {
 		if (HomeCell.get(a).isEmpty()) {
 			if (aa.getRank() == 0) {
@@ -113,6 +115,7 @@ public class BakersDozengame {
 		// TODO Auto-generated method stub
 
 	}
+
 	/**
 	 * 
 	 * @param a
@@ -131,6 +134,7 @@ public class BakersDozengame {
 		return false;
 
 	}
+
 	/**
 	 * Creates Homecell
 	 * 
@@ -143,9 +147,11 @@ public class BakersDozengame {
 		}
 
 	}
+
 	/**
 	 * 
-	 * @param a specific Homecell
+	 * @param a
+	 *            specific Homecell
 	 * @return true of Homecell is removed
 	 */
 
@@ -153,45 +159,48 @@ public class BakersDozengame {
 		return false;
 
 	}
-	
-/**gets the card at the top of the Tableau pile 
- * 
- * @param a Rank of the card to be returned
- * @return the top card in a Tableau
- */
+
+	/**
+	 * gets the card at the top of the Tableau pile
+	 * 
+	 * @param a
+	 *            Rank of the card to be returned
+	 * @return the top card in a Tableau
+	 */
 	public Card GetTopCardTab(int a) {
 
 		return Tableau.get(a).get(Tableau.get(a).size() - 1);
 
 	}
-/**
- * @param a 
- * @return the top Card in a HomeCell
- */
-	
+
+	/**
+	 * @param a
+	 * @return the top Card in a HomeCell
+	 */
 
 	public Card GetTopCardHome(int a) {
 		return HomeCell.get(a).get(HomeCell.get(a).size() - 1);
 	}
-/**
- * 
- * @param a
- * @param b
- * @return ***?
- */
-	
+
+	/**
+	 * 
+	 * @param a
+	 * @param b
+	 * @return get card from Tableau?
+	 */
+
 	public Card GetCardTab(int a, int b) {
 		if (Tableau.get(a).get(b) != null && !Tableau.isEmpty())
 			return Tableau.get(a).get(b);
 		return null;
 	}
-	
-/**
- * 
- * @param a
- * @param b
- * @return Homecell for 
- */
+
+	/**
+	 * 
+	 * @param a
+	 * @param b
+	 * @return get Card from Homecell
+	 */
 	public Card GetCardHome(int a, int b) {
 		if (HomeCell.get(a).get(b) != null && !HomeCell.isEmpty())
 			return HomeCell.get(a).get(b);
