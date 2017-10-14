@@ -50,12 +50,11 @@ public class HomeCelltest {
 
 		a.addtohom(second, 2);
 
-		if (a.HomeCell.get(0).isEmpty()) {
+		if (a.HomeCell.get(2).size() == 1) {
 			if (second.getRank() == 0) {
 				assertEquals(second, a.GetTopCardHome(2));
 			}
-		} else if (a.GetCardHome(2, a.HomeCell.size() - 2).getSuit().equals(second.getSuit())
-				&& second.getRank() - a.GetCardHome(2, a.HomeCell.size() - 2).getRank() == 1) {
+		} else if (!a.HomeCell.get(2).isEmpty()) {
 			assertEquals(second, a.GetTopCardHome(2));
 		}
 	}
@@ -68,12 +67,11 @@ public class HomeCelltest {
 
 		a.addtohom(second, 2);
 
-		if (a.HomeCell.get(0).isEmpty()) {
+		if (a.HomeCell.get(2).size() == 1) {
 			if (second.getRank() == 0) {
 				assertEquals(second, a.GetTopCardHome(2));
 			}
-		} else if (a.GetCardHome(2, a.HomeCell.size() - 2).getSuit().equals(second.getSuit())
-				&& second.getRank() - a.GetCardHome(2, a.HomeCell.size() - 2).getRank() == 1) {
+		} else if (!a.HomeCell.get(2).isEmpty()) {
 			assertEquals(second, a.GetTopCardHome(2));
 		}
 	}
@@ -99,13 +97,12 @@ public class HomeCelltest {
 		int size = a.HomeCell.get(2).size();
 		a.addtohom(second, 2);
 
-		if (a.HomeCell.get(0).isEmpty()) {
+		if (a.HomeCell.get(2).size() == 1) {
 			if (second.getRank() == 0) {
 				assertEquals(size + 1, a.HomeCell.get(2).size());
 			}
-		} else if (a.GetCardHome(2, a.HomeCell.size() - 2).getSuit().equals(second.getSuit())
-				&& second.getRank() - a.GetCardHome(2, a.HomeCell.size() - 2).getRank() == 1) {
-			assertEquals(size + 1, a.HomeCell.get(2).size());
+		} else if (!a.HomeCell.get(2).isEmpty()) {
+			assertEquals(second, a.GetTopCardHome(2));
 		}
 
 	}
@@ -118,13 +115,12 @@ public class HomeCelltest {
 		int size = a.HomeCell.get(2).size();
 		a.addtohom(second, 2);
 
-		if (a.HomeCell.get(0).isEmpty()) {
+		if (a.HomeCell.get(2).size() == 1) {
 			if (second.getRank() == 0) {
 				assertEquals(size + 1, a.HomeCell.get(2).size());
 			}
-		} else if (a.GetCardHome(2, a.HomeCell.size() - 2).getSuit().equals(second.getSuit())
-				&& second.getRank() - a.GetCardHome(2, a.HomeCell.size() - 2).getRank() == 1) {
-			assertEquals(size + 1, a.HomeCell.get(2).size());
+		} else if (!a.HomeCell.get(2).isEmpty()) {
+			assertEquals(second, a.GetTopCardHome(2));
 		}
 
 	}

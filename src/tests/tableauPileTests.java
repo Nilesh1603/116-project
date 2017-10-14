@@ -200,11 +200,11 @@ public class tableauPileTests {
 
 		Card first = a.GetCardTab(2, 3);
 		Card second = a.GetCardTab(1, 3);
-
+		int size = a.Tableau.get(1).size();
 		if (second.getRank() - first.getRank() == 1 && first.getRank() < second.getRank()) {
-			assertTrue(a.addtotab(first, 1, 3));
-		} else
-			assertFalse(a.addtotab(first, 1, 3));
+			a.addtotab(first, 1, 3);
+			assertTrue(a.Tableau.get(1).size() == size + 1);
+		}
 
 	}
 
@@ -214,21 +214,17 @@ public class tableauPileTests {
 
 		Card first = a.GetTopCardTab(3);
 		Card second = a.GetTopCardTab(2);
-		int size = a.Tableau.get(3).size();
+		int size = a.Tableau.get(2).size();
 
-		System.out.println(first.getRank() + first.getSuit());
-		System.out.println(second.getRank() + second.getSuit());
 		if (second.getRank() - first.getRank() == 1 && first.getRank() < second.getRank()) {
 			if (((first.getSuit().equals("Spade") || first.getSuit().equals("Club"))
 					&& (second.getSuit().equals("Diamond") || second.getSuit().equals("Heart")))
 					|| (((first.getSuit().equals("Heart") || first.getSuit().equals("Diamond"))
 							&& (second.getSuit().equals("Spade") || second.getSuit().equals("Club"))))) {
-				assertTrue(a.addtotab(first, 2, size - 1));
+				a.addtotab(first, 2, size - 1);
+				assertTrue(a.Tableau.get(2).size() == size + 1);
 			}
-		} else if (a.Tableau.get(3).isEmpty()) {
-			assertTrue(a.addtotab(first, 2, size - 1));
-		} else {
-			assertFalse(a.addtotab(first, 2, size - 1));
+
 		}
 
 	}

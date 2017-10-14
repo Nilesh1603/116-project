@@ -48,10 +48,7 @@ public class FreeCellpileTest {
 		if (a.FreeCell.get(1).isEmpty()) {
 			assertTrue(a.addtofree(a.GetTopCardTab(2), 1));
 			assertEquals(1, a.FreeCell.get(1).size());
-		} else {
-			assertFalse(a.addtofree(a.GetTopCardTab(2), 1));
-			assertEquals(0, a.FreeCell.get(1).size());
-
 		}
+
 	}
 }

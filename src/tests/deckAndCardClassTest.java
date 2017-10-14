@@ -16,17 +16,17 @@ public class deckAndCardClassTest {
 		Card[] ch = a.getDeck();
 		for (int i = 0; i < 52; i++) {
 			Card b = ch[i];
-			for (int j = 1; j < 52; j++) {
+			for (int j = i + 1; j < 52; j++) {
 				Card c = ch[j];
 				if (b.getRank() != c.getRank() || !b.getSuit().equals(c.getSuit())) {
 					check = true;
-					assertTrue(check);
+				} else
+					check = false;
+				assertTrue(check);
 
-				}
 			}
-
 		}
 		assertTrue(ch.length == 52);
-
 	}
+
 }
