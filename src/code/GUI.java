@@ -13,7 +13,6 @@ import javax.swing.JPanel;
 
 public class GUI {
 
-	
 	private JFrame _frame;
 
 	private ArrayList<JLabel> _viewBoard;
@@ -22,16 +21,28 @@ public class GUI {
 
 	public GUI() {
 		_frame = new JFrame("Game");
-		file = new ArrayList<String>();
-		_viewBoard = new ArrayList<JLabel>();
+
 	}
 
 	public void run() {
+		file = new ArrayList<String>();
+		_viewBoard = new ArrayList<JLabel>();
+
+		Deck cards = new Deck();
+		Card[] deck = cards.getDeck();
+		for (int i = 0; i < 52; i++) {
+			file.add("/images/" + deck[i].getRank() + deck[i].getSuit() + ".gif");
+		}
 
 		for (int i = 0; i < 52; i++) {
 			_viewBoard.add(new JLabel());
 			loadAndSetImage(file.get(i), i);
 		}
+		JPanel a = new JPanel();
+		for (int i = 0; i < 52; i++) {
+			a.add(_viewBoard.get(i));
+		}
+		_frame.add(a);
 		update();
 		_frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		_frame.pack();
