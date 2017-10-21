@@ -6,17 +6,19 @@ import java.util.Collections;
 public class Deck {
 
 	Card[] deck;
-/**
- * creates a new deck with 52 cards by calling the Card.java
- */
+
+	/**
+	 * creates a new deck with 52 cards by calling the Card.java
+	 */
 	public Deck() {
 		deck = new Card[52];
 	}
+
 	// @ co-author Mark & Nilesh
-/**
- * 
- * @return adds suits to the deck with 14 cards each
- */
+	/**
+	 * 
+	 * @return adds suits to the deck with 14 cards each
+	 */
 	public Card[] getDeck() {
 
 		int j = 0;
@@ -43,22 +45,22 @@ public class Deck {
 
 	// @Mark
 	public String Heart() {
-		return "Heart";
+		return "h";
 
 	}
 
 	public String Club() {
-		return "Club";
+		return "c";
 
 	}
 
 	public String Spade() {
-		return "Spade";
+		return "s";
 
 	}
 
 	public String Diamond() {
-		return "Diamond";
+		return "d";
 	}
 
 	// @Nilesh
