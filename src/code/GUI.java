@@ -12,7 +12,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class GUI {
-
+/**
+ * creating the JFrame and the 
+ */
 	private JFrame _frame;
 
 	private ArrayList<JLabel> _viewBoard;
@@ -23,7 +25,9 @@ public class GUI {
 		_frame = new JFrame("Game");
 
 	}
-
+	/**
+	 * 
+	 */
 	public void run() {
 		file = new ArrayList<String>();
 		_viewBoard = new ArrayList<JLabel>();
@@ -49,6 +53,11 @@ public class GUI {
 		_frame.setVisible(true);
 	}
 
+	/**
+	 * loadAndSetImage method directly taken from assignment site, displays each of the 52 cards in the deck
+	 * @param fileNameRelativeToClassFile
+	 * @param i being the number of the card
+	 */
 	private void loadAndSetImage(String fileNameRelativeToClassFile, int i) {
 		ImageIcon cardImage;
 		java.net.URL imgURL = this.getClass().getResource(fileNameRelativeToClassFile);
