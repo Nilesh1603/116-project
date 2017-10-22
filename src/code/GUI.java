@@ -13,7 +13,8 @@ import javax.swing.JPanel;
 
 public class GUI {
 /**
- * creating the JFrame and the 
+ * creates the JFrame 
+ * creates viewable arraylist with a list of Jlabels
  */
 	private JFrame _frame;
 
@@ -25,8 +26,13 @@ public class GUI {
 		_frame = new JFrame("Game");
 
 	}
-	/**
-	 * 
+	/** Run method that 
+	 * assigns file to a new arraylist of type String
+	 * assigns _viewBoard to a new arraylist of type JLabel
+	 * creates a deck by calling the deck class
+	 * first for loop iterates through each card in the deck and assigns a image based on rank and suit
+	 * second for loop interates through each card and assigns it to a JLabel
+	 * then said panels are added to JFrame
 	 */
 	public void run() {
 		file = new ArrayList<String>();
@@ -58,6 +64,7 @@ public class GUI {
 	 * @param fileNameRelativeToClassFile
 	 * @param i being the number of the card
 	 */
+	
 	private void loadAndSetImage(String fileNameRelativeToClassFile, int i) {
 		ImageIcon cardImage;
 		java.net.URL imgURL = this.getClass().getResource(fileNameRelativeToClassFile);
