@@ -24,7 +24,7 @@ public class GUI {
 
 	public GUI() {
 		_frame = new JFrame("Game");
-		//_frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
 	}
 	/** Run method that 
 	 * assigns file to a new arraylist of type String
