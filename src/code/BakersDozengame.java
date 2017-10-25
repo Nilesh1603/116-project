@@ -38,23 +38,49 @@ public class BakersDozengame {
 				count++;
 			}
 
-			Card aa = a.get(a.size()-1);
-			if (aa.getRank() == 13 && a.get(0).getRank() != 13) {
-				Card temp = a.get(3);
-				a.set(3, a.get(0));
-				a.set(0, temp);
-			} else if (aa.getRank() == 13 && a.get(1).getRank() != 13) {
-				Card temp = a.get(3);
-				a.set(3, a.get(1));
-				a.set(1, temp);
-			} else if (aa.getRank() == 13 && a.get(2).getRank() != 13) {
-				Card temp = a.get(3);
-				a.set(3, a.get(2));
-				a.set(2, temp);
+			Card aa = a.get(3);
+			if (aa.getRank() == 13) {
+				if (aa.getRank() == 13 && a.get(0).getRank() != 13) {
+					Card temp = a.get(3);
+					a.set(3, a.get(0));
+					a.set(0, temp);
+				}
+
+				else if (aa.getRank() == 13 && a.get(1).getRank() != 13) {
+					Card temp = a.get(3);
+					a.set(3, a.get(1));
+					a.set(1, temp);
+				} else if (aa.getRank() == 13 && a.get(2).getRank() != 13) {
+					Card temp = a.get(3);
+					a.set(3, a.get(2));
+					a.set(2, temp);
+				}
 			}
+			aa = a.get(2);
+			if (aa.getRank() == 13) {
+				if (aa.getRank() == 13 && a.get(0).getRank() != 13) {
+					Card temp = a.get(2);
+					a.set(2, a.get(0));
+					a.set(0, temp);
+				}
+
+				else if (aa.getRank() == 13 && a.get(1).getRank() != 13) {
+					Card temp = a.get(2);
+					a.set(2, a.get(1));
+					a.set(1, temp);
+				}
+			}
+			aa = a.get(1);
+			if (aa.getRank() == 13) {
+				if (aa.getRank() == 13 && a.get(0).getRank() != 13) {
+					Card temp = a.get(1);
+					a.set(1, a.get(0));
+					a.set(0, temp);
+				}
+			}
+
 			Tableau.add(a);
 		}
-
 	}
 
 	/**

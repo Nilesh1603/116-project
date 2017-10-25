@@ -1,5 +1,6 @@
 package code;
 
+import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
@@ -107,23 +108,38 @@ public class GUI implements ActionListener {
 	private void FreeCell() {
 		// TODO Auto-generated method stub
 
+		// System.exit(0);
 		run();
 
 		Freecell game1 = new Freecell();
 
 		game1.TableauPile();
-		JPanel a = new JPanel(new GridLayout(1, 2));
-		JPanel a1 = new JPanel(new GridLayout(6, 4));
-		JPanel a2 = new JPanel(new GridLayout(7, 4));
-		file = new ArrayList<String>();
-		for (int i = 0; i < 13; i++) {
+		JPanel freecellgame = new JPanel();
+		JPanel freehomecell = new JPanel(new GridLayout(1, 2));
+		JPanel freecell = new JPanel(new GridLayout(1, 4));
+		JPanel Homecell = new JPanel(new GridLayout(1, 4));
+		JPanel a = new JPanel(new GridLayout(1, 8));
 
-			for (int j = 0; j < 4; j++) {
+		file = new ArrayList<String>();
+		for (int i = 0; i < 4; i++) {
+
+			for (int j = 0; j < 7; j++) {
 
 				file.add("/images/" + game1.Tableau.get(i).get(j).getRank() + game1.Tableau.get(i).get(j).getSuit()
 						+ ".gif");
 			}
+			System.out.println(game1.Tableau.get(i).get(6).getRank() + " 	" + game1.Tableau.get(i).get(6).getSuit());
 		}
+		for (int i = 4; i < 8; i++) {
+
+			for (int j = 0; j < 6; j++) {
+
+				file.add("/images/" + game1.Tableau.get(i).get(j).getRank() + game1.Tableau.get(i).get(j).getSuit()
+						+ ".gif");
+			}
+			System.out.println(game1.Tableau.get(i).get(5).getRank() + " 	" + game1.Tableau.get(i).get(5).getSuit());
+		}
+
 		_viewBoard = new ArrayList<JLabel>();
 		for (int i = 0; i < 52; i++) {
 			_viewBoard.add(new JLabel());
@@ -131,26 +147,60 @@ public class GUI implements ActionListener {
 		}
 		int count = 0;
 		for (int i = 0; i < 4; i++) {
+			JPanel a1 = new JPanel(new GridLayout(7, 1));
+			for (int j = 0; j < 7; j++) {
 
-			for (int j = 0; j < 6; j++) {
 				a1.add(_viewBoard.get(count));
 				count++;
 			}
+			a.add(a1);
 
 		}
 		for (int i = 0; i < 4; i++) {
+			JPanel a2 = new JPanel(new GridLayout(6, 1));
+			for (int j = 0; j < 6; j++) {
 
-			for (int j = 0; j < 7; j++) {
 				a2.add(_viewBoard.get(count));
 				count++;
 			}
 
+			a.add(a2);
+
 		}
 
-		a.add(a1);
-		a.add(a2);
-		_frame.add(a);
+		for (int i = 0; i < 4; i++) {
+			_viewBoard.add(new JLabel());
+			loadAndSetImage("/images/" + "green" + ".gif", count);
+			count++;
+		}
+		int h = count - 4;
+		for (int i = 0; i < 4; i++) {
+			JPanel x = new JPanel();
+			x.add(_viewBoard.get(h));
+			Homecell.add(x);
+			h++;
+		}
+		for (int i = 0; i < 4; i++) {
+			_viewBoard.add(new JLabel());
+			loadAndSetImage("/images/" + "gold" + ".gif", count);
+			count++;
+		}
+		int h1 = count - 4;
+		for (int i = 0; i < 4; i++) {
+			JPanel x = new JPanel();
+			x.add(_viewBoard.get(h1));
+			freecell.add(x);
+			h1++;
+		}
 
+		freehomecell.add(freecell);
+		freehomecell.add(Homecell);
+
+		freecellgame.add(freehomecell);
+		freecellgame.add(a);
+
+		_frame.add(freecellgame);
+		_frame.setLayout(new CardLayout());
 		_frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		_frame.pack();
 		_frame.setVisible(true);
@@ -159,25 +209,25 @@ public class GUI implements ActionListener {
 
 	private void BakersDozen() {
 		// TODO Auto-generated method stub
+
 		run();
 		BakersDozengame game1 = new BakersDozengame();
 
-		game1.dealToTableauPile();
-		JPanel a = new JPanel(new GridLayout(4, 13));
+		// game1.dealToTableauPile();
+		JPanel baker = new JPanel(new GridLayout(2, 1));
+		JPanel Homecell = new JPanel(new GridLayout(1, 4));
+		JPanel a = new JPanel(new GridLayout(1, 13));
+
 		file = new ArrayList<String>();
 		for (int i = 0; i < 13; i++) {
 
 			for (int j = 0; j < 4; j++) {
-				if (j == 3) {
-					if (game1.Tableau.get(i).get(3).getRank() != 13)
-						file.add("/images/" + game1.Tableau.get(i).get(j).getRank()
-								+ game1.Tableau.get(i).get(j).getSuit() + ".gif");
-				} else
-					file.add("/images/" + game1.Tableau.get(i).get(j).getRank() + game1.Tableau.get(i).get(j).getSuit()
-							+ ".gif");
+
+				file.add("/images/" + game1.Tableau.get(i).get(j).getRank() + game1.Tableau.get(i).get(j).getSuit()
+						+ ".gif");
 
 			}
-
+			System.out.println(game1.Tableau.get(i).get(3).getRank() + " 	" + game1.Tableau.get(i).get(3).getSuit());
 		}
 		_viewBoard = new ArrayList<JLabel>();
 		int c = 0;
@@ -191,14 +241,29 @@ public class GUI implements ActionListener {
 		}
 		int count = 0;
 		for (int i = 0; i < 13; i++) {
-
+			JPanel x = new JPanel(new GridLayout(4, 1));
 			for (int j = 0; j < 4; j++) {
-				a.add(_viewBoard.get(count));
+				x.add(_viewBoard.get(count));
 				count++;
 			}
+			a.add(x);
+		}
+		for (int i = 0; i < 4; i++) {
+			_viewBoard.add(new JLabel());
+			loadAndSetImage("/images/" + "green" + ".gif", count);
+			count++;
+		}
+		int h = count - 4;
+		for (int i = 0; i < 4; i++) {
+			JPanel x = new JPanel();
+			x.add(_viewBoard.get(h));
+			Homecell.add(x);
+			h++;
 		}
 
-		_frame.add(a);
+		baker.add(Homecell);
+		baker.add(a);
+		_frame.add(baker);
 
 		_frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		_frame.pack();
