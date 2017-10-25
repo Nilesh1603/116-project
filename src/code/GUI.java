@@ -168,15 +168,26 @@ public class GUI implements ActionListener {
 		for (int i = 0; i < 13; i++) {
 
 			for (int j = 0; j < 4; j++) {
+				if (j == 3) {
+					if (game1.Tableau.get(i).get(3).getRank() != 13)
+						file.add("/images/" + game1.Tableau.get(i).get(j).getRank()
+								+ game1.Tableau.get(i).get(j).getSuit() + ".gif");
+				} else
+					file.add("/images/" + game1.Tableau.get(i).get(j).getRank() + game1.Tableau.get(i).get(j).getSuit()
+							+ ".gif");
 
-				file.add("/images/" + game1.Tableau.get(i).get(j).getRank() + game1.Tableau.get(i).get(j).getSuit()
-						+ ".gif");
 			}
+
 		}
 		_viewBoard = new ArrayList<JLabel>();
-		for (int i = 0; i < 52; i++) {
-			_viewBoard.add(new JLabel());
-			loadAndSetImage(file.get(i), i);
+		int c = 0;
+
+		for (int i = 0; i < 13; i++) {
+			for (int j = 0; j < 4; j++) {
+				_viewBoard.add(new JLabel());
+				loadAndSetImage(file.get(c), c);
+				c++;
+			}
 		}
 		int count = 0;
 		for (int i = 0; i < 13; i++) {
@@ -185,7 +196,6 @@ public class GUI implements ActionListener {
 				a.add(_viewBoard.get(count));
 				count++;
 			}
-
 		}
 
 		_frame.add(a);

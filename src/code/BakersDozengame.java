@@ -38,7 +38,7 @@ public class BakersDozengame {
 				count++;
 			}
 
-			Card aa = a.get(3);
+			Card aa = a.get(a.size()-1);
 			if (aa.getRank() == 13 && a.get(0).getRank() != 13) {
 				Card temp = a.get(3);
 				a.set(3, a.get(0));
