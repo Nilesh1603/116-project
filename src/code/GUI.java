@@ -3,6 +3,7 @@ package code;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
@@ -12,6 +13,7 @@ import java.util.ArrayList;
 
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JMenuItem;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -19,6 +21,8 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
+import javax.swing.OverlayLayout;
+import javax.swing.border.EmptyBorder;
 
 public class GUI implements ActionListener {
 	/**
@@ -26,7 +30,7 @@ public class GUI implements ActionListener {
 	 */
 	private JFrame _frame;
 
-	private ArrayList<JLabel> _viewBoard;
+	private ArrayList<JButton> _viewBoard;
 
 	private ArrayList<String> file;
 
@@ -51,7 +55,7 @@ public class GUI implements ActionListener {
 	public void run() {
 
 		file = new ArrayList<String>();
-		_viewBoard = new ArrayList<JLabel>();
+		_viewBoard = new ArrayList<JButton>();
 
 		JMenu Menu = new JMenu("New Game"); // Create a menu with name
 		// "New
@@ -77,14 +81,20 @@ public class GUI implements ActionListener {
 			}
 
 			for (int i = 0; i < 52; i++) {
-				_viewBoard.add(new JLabel());
+				_viewBoard.add(new JButton());
 				loadAndSetImage(file.get(i), i);
 			}
 
+			int c = 0;
 			JPanel a = new JPanel();
-			for (int i = 0; i < 52; i++) {
-
-				a.add(_viewBoard.get(i));
+			a.setLayout(new BoxLayout(a, BoxLayout.X_AXIS));
+			for (int i = 0; i < 13; i++) {
+				JPanel a1 = new JPanel();
+				a1.setLayout(new BoxLayout(a1, BoxLayout.Y_AXIS));
+				for (int j = 0; j < 4; j++) {
+					a1.add(_viewBoard.get(c++));
+				}
+				a.add(a1);
 			}
 
 			m.add(Menu);
@@ -115,10 +125,15 @@ public class GUI implements ActionListener {
 
 		game1.TableauPile();
 		JPanel freecellgame = new JPanel();
-		JPanel freehomecell = new JPanel(new GridLayout(1, 2));
-		JPanel freecell = new JPanel(new GridLayout(1, 4));
-		JPanel Homecell = new JPanel(new GridLayout(1, 4));
-		JPanel a = new JPanel(new GridLayout(1, 8));
+		freecellgame.setLayout(new BoxLayout(freecellgame, BoxLayout.Y_AXIS));
+		JPanel freehomecell = new JPanel();
+		freehomecell.setLayout(new BoxLayout(freehomecell, BoxLayout.X_AXIS));
+		JPanel freecell = new JPanel();
+		freecell.setLayout(new BoxLayout(freecell, BoxLayout.X_AXIS));
+		JPanel Homecell = new JPanel();
+		Homecell.setLayout(new BoxLayout(Homecell, BoxLayout.X_AXIS));
+		JPanel a = new JPanel();
+		a.setLayout(new BoxLayout(a, BoxLayout.X_AXIS));
 
 		file = new ArrayList<String>();
 		for (int i = 0; i < 4; i++) {
@@ -128,7 +143,6 @@ public class GUI implements ActionListener {
 				file.add("/images/" + game1.Tableau.get(i).get(j).getRank() + game1.Tableau.get(i).get(j).getSuit()
 						+ ".gif");
 			}
-			System.out.println(game1.Tableau.get(i).get(6).getRank() + " 	" + game1.Tableau.get(i).get(6).getSuit());
 		}
 		for (int i = 4; i < 8; i++) {
 
@@ -137,19 +151,19 @@ public class GUI implements ActionListener {
 				file.add("/images/" + game1.Tableau.get(i).get(j).getRank() + game1.Tableau.get(i).get(j).getSuit()
 						+ ".gif");
 			}
-			System.out.println(game1.Tableau.get(i).get(5).getRank() + " 	" + game1.Tableau.get(i).get(5).getSuit());
 		}
 
-		_viewBoard = new ArrayList<JLabel>();
+		_viewBoard = new ArrayList<JButton>();
 		for (int i = 0; i < 52; i++) {
-			_viewBoard.add(new JLabel());
+			_viewBoard.add(new JButton());
 			loadAndSetImage(file.get(i), i);
 		}
 		int count = 0;
 		for (int i = 0; i < 4; i++) {
-			JPanel a1 = new JPanel(new GridLayout(7, 1));
+			JPanel a1 = new JPanel();
+			a1.setLayout(new BoxLayout(a1, BoxLayout.Y_AXIS));
+			// a1.setLayout(new OverlayLayout());
 			for (int j = 0; j < 7; j++) {
-
 				a1.add(_viewBoard.get(count));
 				count++;
 			}
@@ -157,7 +171,8 @@ public class GUI implements ActionListener {
 
 		}
 		for (int i = 0; i < 4; i++) {
-			JPanel a2 = new JPanel(new GridLayout(6, 1));
+			JPanel a2 = new JPanel();
+			a2.setLayout(new BoxLayout(a2, BoxLayout.Y_AXIS));
 			for (int j = 0; j < 6; j++) {
 
 				a2.add(_viewBoard.get(count));
@@ -169,7 +184,7 @@ public class GUI implements ActionListener {
 		}
 
 		for (int i = 0; i < 4; i++) {
-			_viewBoard.add(new JLabel());
+			_viewBoard.add(new JButton());
 			loadAndSetImage("/images/" + "green" + ".gif", count);
 			count++;
 		}
@@ -181,7 +196,7 @@ public class GUI implements ActionListener {
 			h++;
 		}
 		for (int i = 0; i < 4; i++) {
-			_viewBoard.add(new JLabel());
+			_viewBoard.add(new JButton());
 			loadAndSetImage("/images/" + "gold" + ".gif", count);
 			count++;
 		}
@@ -214,9 +229,12 @@ public class GUI implements ActionListener {
 		BakersDozengame game1 = new BakersDozengame();
 
 		// game1.dealToTableauPile();
-		JPanel baker = new JPanel(new GridLayout(2, 1));
-		JPanel Homecell = new JPanel(new GridLayout(1, 4));
-		JPanel a = new JPanel(new GridLayout(1, 13));
+		JPanel baker = new JPanel();
+		baker.setLayout(new BoxLayout(baker, BoxLayout.Y_AXIS));
+		JPanel Homecell = new JPanel();
+		Homecell.setLayout(new BoxLayout(Homecell, BoxLayout.X_AXIS));
+		JPanel a = new JPanel();
+		a.setLayout(new BoxLayout(a, BoxLayout.X_AXIS));
 
 		file = new ArrayList<String>();
 		for (int i = 0; i < 13; i++) {
@@ -229,19 +247,20 @@ public class GUI implements ActionListener {
 			}
 			System.out.println(game1.Tableau.get(i).get(3).getRank() + " 	" + game1.Tableau.get(i).get(3).getSuit());
 		}
-		_viewBoard = new ArrayList<JLabel>();
+		_viewBoard = new ArrayList<JButton>();
 		int c = 0;
 
 		for (int i = 0; i < 13; i++) {
 			for (int j = 0; j < 4; j++) {
-				_viewBoard.add(new JLabel());
+				_viewBoard.add(new JButton());
 				loadAndSetImage(file.get(c), c);
 				c++;
 			}
 		}
 		int count = 0;
 		for (int i = 0; i < 13; i++) {
-			JPanel x = new JPanel(new GridLayout(4, 1));
+			JPanel x = new JPanel();
+			x.setLayout(new BoxLayout(x, BoxLayout.Y_AXIS));
 			for (int j = 0; j < 4; j++) {
 				x.add(_viewBoard.get(count));
 				count++;
@@ -249,15 +268,14 @@ public class GUI implements ActionListener {
 			a.add(x);
 		}
 		for (int i = 0; i < 4; i++) {
-			_viewBoard.add(new JLabel());
+			_viewBoard.add(new JButton());
 			loadAndSetImage("/images/" + "green" + ".gif", count);
 			count++;
 		}
 		int h = count - 4;
 		for (int i = 0; i < 4; i++) {
-			JPanel x = new JPanel();
-			x.add(_viewBoard.get(h));
-			Homecell.add(x);
+
+			Homecell.add(_viewBoard.get(h));
 			h++;
 		}
 
