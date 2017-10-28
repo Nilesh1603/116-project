@@ -28,17 +28,17 @@ public class GUI implements ActionListener {
 	/**
 	 * creates the JFrame creates viewable arraylist with a list of Jlabels
 	 */
-	private JFrame _frame;
+	public JFrame _frame;
 
-	private ArrayList<JButton> _viewBoard;
+	public ArrayList<JButton> _viewBoard;
 
-	private ArrayList<String> file;
+	public ArrayList<String> file;
 
-	private JMenuItem FreeCell;
+	public JMenuItem FreeCell;
 
-	private JMenuItem BakersDozen;
+	public JMenuItem BakersDozen;
 
-	private JMenuItem Quit;
+	public JMenuItem Quit;
 
 	public GUI() {
 		_frame = null;
@@ -115,7 +115,7 @@ public class GUI implements ActionListener {
 		}
 	}
 
-	private void FreeCell() {
+	public void FreeCell() {
 		// TODO Auto-generated method stub
 
 		// System.exit(0);
@@ -157,6 +157,9 @@ public class GUI implements ActionListener {
 		for (int i = 0; i < 52; i++) {
 			_viewBoard.add(new JButton());
 			loadAndSetImage(file.get(i), i);
+			ActionListener x;
+			x = new EventHandler(i, this);
+			_viewBoard.get(i).addActionListener(x);
 		}
 		int count = 0;
 		for (int i = 0; i < 4; i++) {
@@ -222,7 +225,7 @@ public class GUI implements ActionListener {
 
 	}
 
-	private void BakersDozen() {
+	public void BakersDozen() {
 		// TODO Auto-generated method stub
 
 		run();
@@ -254,6 +257,9 @@ public class GUI implements ActionListener {
 			for (int j = 0; j < 4; j++) {
 				_viewBoard.add(new JButton());
 				loadAndSetImage(file.get(c), c);
+				ActionListener x;
+				x = new EventHandler(c, this);
+				_viewBoard.get(c).addActionListener(x);
 				c++;
 			}
 		}
@@ -298,7 +304,7 @@ public class GUI implements ActionListener {
 	 *            being the number of the card
 	 */
 
-	private void loadAndSetImage(String fileNameRelativeToClassFile, int i) {
+	public void loadAndSetImage(String fileNameRelativeToClassFile, int i) {
 		ImageIcon cardImage;
 		java.net.URL imgURL = this.getClass().getResource(fileNameRelativeToClassFile);
 		if (imgURL != null) {
