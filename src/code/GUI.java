@@ -39,10 +39,13 @@ public class GUI implements ActionListener {
 	public JMenuItem BakersDozen;
 
 	public JMenuItem Quit;
+	public Integer swap1;
+	public Integer swap2;
+	public Integer swapcount;
 
 	public GUI() {
 		_frame = null;
-
+		swapcount = 0;
 	}
 
 	/**
@@ -134,7 +137,7 @@ public class GUI implements ActionListener {
 		Homecell.setLayout(new BoxLayout(Homecell, BoxLayout.X_AXIS));
 		JPanel a = new JPanel();
 		a.setLayout(new BoxLayout(a, BoxLayout.X_AXIS));
-
+		ActionListener x;
 		file = new ArrayList<String>();
 		for (int i = 0; i < 4; i++) {
 
@@ -157,7 +160,7 @@ public class GUI implements ActionListener {
 		for (int i = 0; i < 52; i++) {
 			_viewBoard.add(new JButton());
 			loadAndSetImage(file.get(i), i);
-			ActionListener x;
+
 			x = new EventHandler(i, this);
 			_viewBoard.get(i).addActionListener(x);
 		}
@@ -170,6 +173,7 @@ public class GUI implements ActionListener {
 				a1.add(_viewBoard.get(count));
 				count++;
 			}
+			a1.setAlignmentY(10);
 			a.add(a1);
 
 		}
@@ -181,7 +185,7 @@ public class GUI implements ActionListener {
 				a2.add(_viewBoard.get(count));
 				count++;
 			}
-
+			a2.setAlignmentY(40);
 			a.add(a2);
 
 		}
@@ -189,25 +193,31 @@ public class GUI implements ActionListener {
 		for (int i = 0; i < 4; i++) {
 			_viewBoard.add(new JButton());
 			loadAndSetImage("/images/" + "green" + ".gif", count);
+
+			x = new EventHandler(count, this);
+			_viewBoard.get(count).addActionListener(x);
 			count++;
 		}
 		int h = count - 4;
 		for (int i = 0; i < 4; i++) {
-			JPanel x = new JPanel();
-			x.add(_viewBoard.get(h));
-			Homecell.add(x);
+			JPanel x1 = new JPanel();
+			x1.add(_viewBoard.get(h));
+			Homecell.add(x1);
 			h++;
 		}
 		for (int i = 0; i < 4; i++) {
 			_viewBoard.add(new JButton());
 			loadAndSetImage("/images/" + "gold" + ".gif", count);
+
+			x = new EventHandler(count, this);
+			_viewBoard.get(count).addActionListener(x);
 			count++;
 		}
 		int h1 = count - 4;
 		for (int i = 0; i < 4; i++) {
-			JPanel x = new JPanel();
-			x.add(_viewBoard.get(h1));
-			freecell.add(x);
+			JPanel x1 = new JPanel();
+			x1.add(_viewBoard.get(h1));
+			freecell.add(x1);
 			h1++;
 		}
 
@@ -238,7 +248,7 @@ public class GUI implements ActionListener {
 		Homecell.setLayout(new BoxLayout(Homecell, BoxLayout.X_AXIS));
 		JPanel a = new JPanel();
 		a.setLayout(new BoxLayout(a, BoxLayout.X_AXIS));
-
+		ActionListener x;
 		file = new ArrayList<String>();
 		for (int i = 0; i < 13; i++) {
 
@@ -257,7 +267,7 @@ public class GUI implements ActionListener {
 			for (int j = 0; j < 4; j++) {
 				_viewBoard.add(new JButton());
 				loadAndSetImage(file.get(c), c);
-				ActionListener x;
+
 				x = new EventHandler(c, this);
 				_viewBoard.get(c).addActionListener(x);
 				c++;
@@ -265,22 +275,23 @@ public class GUI implements ActionListener {
 		}
 		int count = 0;
 		for (int i = 0; i < 13; i++) {
-			JPanel x = new JPanel();
-			x.setLayout(new BoxLayout(x, BoxLayout.Y_AXIS));
+			JPanel x1 = new JPanel();
+			x1.setLayout(new BoxLayout(x1, BoxLayout.Y_AXIS));
 			for (int j = 0; j < 4; j++) {
-				x.add(_viewBoard.get(count));
+				x1.add(_viewBoard.get(count));
 				count++;
 			}
-			a.add(x);
+			a.add(x1);
 		}
 		for (int i = 0; i < 4; i++) {
 			_viewBoard.add(new JButton());
 			loadAndSetImage("/images/" + "green" + ".gif", count);
+			x = new EventHandler(count, this);
+			_viewBoard.get(count).addActionListener(x);
 			count++;
 		}
 		int h = count - 4;
 		for (int i = 0; i < 4; i++) {
-
 			Homecell.add(_viewBoard.get(h));
 			h++;
 		}
@@ -325,6 +336,27 @@ public class GUI implements ActionListener {
 
 	}
 
+	public void drag(int x) {
+
+		if (swapcount % 2 != 1) {
+			swap1 = null;
+			swap2 = null;
+		}
+		if (swap1 == null)
+			swap1 = x;
+		else
+			swap2 = x;
+		if (swap1 != null && swap2 != null) {
+			_viewBoard.get(swap1).setIcon(new ImageIcon(this.getClass().getResource(file.get(swap2))));
+			_viewBoard.get(swap2).setIcon(new ImageIcon(this.getClass().getResource(file.get(swap1))));
+			String temp = file.get(swap1);
+			file.set(swap1, file.get(swap2));
+			file.set(swap2, temp);
+
+		}
+		swapcount++;
+	}
+
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
@@ -337,7 +369,6 @@ public class GUI implements ActionListener {
 		}
 		if (e.getSource() == Quit) {
 			System.exit(0);
-
 		}
 	}
 

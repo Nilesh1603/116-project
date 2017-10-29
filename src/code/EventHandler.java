@@ -8,18 +8,25 @@ import javax.swing.JButton;
 
 public class EventHandler implements ActionListener {
 	GUI a;
-	int x;
+	Integer x;
 
 	public EventHandler(int i, GUI gui) {
 		// TODO Auto-generated constructor stub
+
 		x = i;
+
 		a = gui;
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		// TODO Auto-generated method stub
-		System.out.println(a.file.get(x)+" 	"+x);
+		if (x < 52)
+			System.out.println(a.file.get(x) + " 	" + x);
+		else
+			System.out.println(a._viewBoard.get(x));
+
+		a.drag(x);
 	}
 
 }
