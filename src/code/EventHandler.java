@@ -21,6 +21,7 @@ public class EventHandler implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		// TODO Auto-generated method stub
+	if(a.game==1){
 		if (x < 52) {
 			System.out.println(a.file.get(x) + " 	" + x);
 			a.drag(x);
@@ -28,6 +29,16 @@ public class EventHandler implements ActionListener {
 
 			a.drag(x);
 		}
+	}
+	if(a.game==2){
+		if (x < 52) {
+			System.out.println(a.file.get(x) + " 	" + x);
+			a.drag2(x);
+		} else {
+
+			a.drag2(x);
+		}
+	}
 
 	}
 }

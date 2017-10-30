@@ -45,6 +45,7 @@ public class GUI implements ActionListener {
 	public Integer swap1;
 	public Integer swap2;
 	public Integer swapcount;
+	public Integer swapcount2;
 	private static final Border UNSELECTED_BORDER = BorderFactory.createEmptyBorder(5, 5, 5, 5);
 	private static final Border SELECTED_BORDER = BorderFactory.createMatteBorder(5, 5, 5, 5, Color.BLACK);
 
@@ -74,7 +75,7 @@ public class GUI implements ActionListener {
 
 		file = new ArrayList<String>();
 		_viewBoard = new ArrayList<JButton>();
-
+		JPanel a = new JPanel();
 		JMenu Menu = new JMenu("New Game"); // Create a menu with name
 		// "New
 		// Game"
@@ -104,7 +105,7 @@ public class GUI implements ActionListener {
 			}
 
 			int c = 0;
-			JPanel a = new JPanel();
+
 			a.setLayout(new BoxLayout(a, BoxLayout.X_AXIS));
 			for (int i = 0; i < 13; i++) {
 				JPanel a1 = new JPanel();
@@ -117,7 +118,6 @@ public class GUI implements ActionListener {
 
 			m.add(Menu);
 			_frame.setJMenuBar(m);
-			_frame.add(new JPanel());
 			_frame.add(a);
 
 			_frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -354,58 +354,126 @@ public class GUI implements ActionListener {
 	}
 
 	public void drag(int x) {
-		if (game == 1) {
-			if (x < 52) {
-				if (swapcount % 2 == 0) {
 
-					swap1 = null;
-					swap2 = null;
+		if (x < 52) {
+			if (swapcount % 2 == 0) {
 
-				}
-				if (swap1 == null) {
-					swap1 = x;
-					if (swap1 < 28) {
-						int a = swap1 / 7;
-						int b = swap1 % 7;
-						System.out.println(a + "   " + b);
-						if (g1.GetTopCardTab(a).equals(g1.GetCardTab(a, b)))
-							select(swap1);
-					} else {
-						int a = swap1 / 7;
-						int b = (swap1 - 28) % 6;
-						System.out.println(a + "   " + b);
-						if (g1.GetTopCardTab(a).equals(g1.GetCardTab(a, b)))
-							select(swap1);
-					}
+				swap1 = null;
+				swap2 = null;
 
-				} else {
-					unselect(swap1);
-					swap2 = x;
-
-				}
-
-			} else if (x > 51 && x < 56) {
+			}
+			if (swap1 == null) {
 				swap1 = x;
-				System.out.println("Cannot select Homecell" + x);
-			} else {
-				if (swapcount % 2 == 0) {
-
-					swap1 = null;
-					swap2 = null;
-
+				if (swap1 < 28) {
+					int a = swap1 / 7;
+					int b = swap1 % 7;
+					System.out.println(a + "   " + b);
+					if (g1.GetTopCardTab(a).equals(g1.GetCardTab(a, b)))
+						select(swap1);
+				} else {
+					int a = swap1 / 7;
+					int b = (swap1 - 28) % 6;
+					System.out.println(a + "   " + b);
+					if (g1.GetTopCardTab(a).equals(g1.GetCardTab(a, b)))
+						select(swap1);
 				}
-				if (swap1 == null) {
-					swap1 = x;
 
-					select(x);
-
-				} else
-					unselect(swap1);
+			} else {
+				unselect(swap1);
+				swap2 = x;
+				function1(swap1, swap2);
 			}
 
+		} else if (x > 51 && x < 56) {
+			if (swap1 == null) {
+				System.out.println("Cannot select Homecell" + x);
+			} else {
+				unselect(swap1);
+				swap2 = x;
+				function1(swap1, swap2);
+				swap1 = null;
+				swap2 = null;
+			}
+		} else {
+			if (swapcount % 2 == 0) {
+
+				swap1 = null;
+				swap2 = null;
+
+			}
+			if (swap1 == null) {
+				swap1 = x;
+				if (!g1.FreeCell.get(swap1).isEmpty())
+					select(x);
+
+			} else
+				unselect(swap1);
 		}
 
 		swapcount++;
+	}
+
+	private void function1(Integer swap12, Integer swap22) {
+		// TODO Auto-generated method stub
+
+	}
+
+	public void drag2(int x) {
+
+		if (x < 52) {
+			if (swapcount2 % 2 == 0) {
+
+				swap1 = null;
+				swap2 = null;
+
+			}
+			if (swap1 == null) {
+				swap1 = x;
+
+				int a = swap1 / 4;
+				int b = swap1 % 4;
+				System.out.println(a + "   " + b);
+				if (g2.GetTopCardTab(a).equals(g2.GetCardTab(a, b)))
+					select(swap1);
+			}
+
+			else {
+				int a = swap1 / 4;
+				int b = swap1 % 4;
+				swap2 = x;
+				unselect(swap1);
+				// if (g2.addtohom(g2.GetTopCardTab(a), swap2 / 4))
+				;
+				{
+
+				}
+
+			}
+
+		} else if (x > 51 && x < 56) {
+			if (swap1 == null) {
+				System.out.println("Cannot select Homecell" + x);
+			} else {
+				unselect(swap1);
+				swap2 = x;
+				function1b(swap1, swap2);
+				swap1 = null;
+				swap2 = null;
+			}
+		}
+
+		swapcount2++;
+
+	}
+
+	private void function1b(Integer swap12, Integer swap22) {
+		// TODO Auto-generated method stub
+		System.out.println(g2.GetTopCardTab(((swap12 + 1) / 4) - 1).getRank());
+		if (g2.addtohom(g2.GetTopCardTab(((swap12 + 1) / 4) - 1), swap22 - 52)) {
+			JButton t = _viewBoard.get(swap12);
+			_viewBoard.set(swap22, t);
+			_viewBoard.set(swap12, null);
+		}
 	}
 
 	@Override
@@ -414,10 +482,12 @@ public class GUI implements ActionListener {
 		// TODO Auto-generated method stub
 		if (e.getSource() == FreeCell) {
 			game = 1;
+			swapcount = 0;
 			g1 = FreeCell();
 		}
 		if (e.getSource() == BakersDozen) {
 			game = 2;
+			swapcount2 = 0;
 			g2 = BakersDozen();
 		}
 		if (e.getSource() == Quit) {
