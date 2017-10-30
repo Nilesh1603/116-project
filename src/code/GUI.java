@@ -46,6 +46,8 @@ public class GUI implements ActionListener {
 	public Integer swap2;
 	public Integer swapcount;
 	public Integer swapcount2;
+
+	private JMenuItem Easter;
 	private static final Border UNSELECTED_BORDER = BorderFactory.createEmptyBorder(5, 5, 5, 5);
 	private static final Border SELECTED_BORDER = BorderFactory.createMatteBorder(5, 5, 5, 5, Color.BLACK);
 
@@ -91,6 +93,9 @@ public class GUI implements ActionListener {
 		Quit = new JMenuItem("Quit");
 		Quit.addActionListener(this);
 		Menu.add(Quit);
+		Easter = new JMenuItem("Easter");
+		Easter.addActionListener(this);
+		Menu.add(Easter);
 		if (_frame == null) {
 			_frame = new JFrame("Game");
 			Deck cards = new Deck();
@@ -492,6 +497,24 @@ public class GUI implements ActionListener {
 		}
 		if (e.getSource() == Quit) {
 			System.exit(0);
+		}
+		if (e.getSource() == Easter) {
+			_frame = new JFrame("Justice League");
+			JPanel a = new JPanel();
+			JLabel b = new JLabel();
+			ImageIcon cardImage;
+			java.net.URL imgURL = this.getClass().getResource("/images/" + "easter" + ".jpg");
+
+			cardImage = new ImageIcon(imgURL);
+			// Dimension d = new Dimension(cardImage.getIconWidth() + 10,
+			// cardImage.getIconHeight() + 10);
+			b.setIcon(cardImage);
+			a.add(b);
+
+			_frame.add(a);
+			_frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			_frame.pack();
+			_frame.setVisible(true);
 		}
 	}
 
