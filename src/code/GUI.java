@@ -11,6 +11,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
+import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -22,6 +23,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.OverlayLayout;
+import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 
 public class GUI implements ActionListener {
@@ -35,13 +37,26 @@ public class GUI implements ActionListener {
 	public ArrayList<String> file;
 
 	public JMenuItem FreeCell;
-
+	public Freecell g1;
+	public BakersDozengame g2;
 	public JMenuItem BakersDozen;
-
+	public int game;
 	public JMenuItem Quit;
 	public Integer swap1;
 	public Integer swap2;
 	public Integer swapcount;
+	private static final Border UNSELECTED_BORDER = BorderFactory.createEmptyBorder(5, 5, 5, 5);
+	private static final Border SELECTED_BORDER = BorderFactory.createMatteBorder(5, 5, 5, 5, Color.BLACK);
+
+	public void select(Integer x) {
+		_viewBoard.get(x).setBorder(SELECTED_BORDER);
+		// repaint();
+	}
+
+	public void unselect(int x) {
+		_viewBoard.get(x).setBorder(UNSELECTED_BORDER);
+		// repaint();
+	}
 
 	public GUI() {
 		_frame = null;
@@ -118,7 +133,7 @@ public class GUI implements ActionListener {
 		}
 	}
 
-	public void FreeCell() {
+	public Freecell FreeCell() {
 		// TODO Auto-generated method stub
 
 		// System.exit(0);
@@ -232,10 +247,11 @@ public class GUI implements ActionListener {
 		_frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		_frame.pack();
 		_frame.setVisible(true);
+		return game1;
 
 	}
 
-	public void BakersDozen() {
+	public BakersDozengame BakersDozen() {
 		// TODO Auto-generated method stub
 
 		run();
@@ -303,6 +319,7 @@ public class GUI implements ActionListener {
 		_frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		_frame.pack();
 		_frame.setVisible(true);
+		return game1;
 
 	}
 
@@ -337,23 +354,57 @@ public class GUI implements ActionListener {
 	}
 
 	public void drag(int x) {
+		if (game == 1) {
+			if (x < 52) {
+				if (swapcount % 2 == 0) {
 
-		if (swapcount % 2 != 1) {
-			swap1 = null;
-			swap2 = null;
-		}
-		if (swap1 == null)
-			swap1 = x;
-		else
-			swap2 = x;
-		if (swap1 != null && swap2 != null) {
-			_viewBoard.get(swap1).setIcon(new ImageIcon(this.getClass().getResource(file.get(swap2))));
-			_viewBoard.get(swap2).setIcon(new ImageIcon(this.getClass().getResource(file.get(swap1))));
-			String temp = file.get(swap1);
-			file.set(swap1, file.get(swap2));
-			file.set(swap2, temp);
+					swap1 = null;
+					swap2 = null;
+
+				}
+				if (swap1 == null) {
+					swap1 = x;
+					if (swap1 < 28) {
+						int a = swap1 / 7;
+						int b = swap1 % 7;
+						System.out.println(a + "   " + b);
+						if (g1.GetTopCardTab(a).equals(g1.GetCardTab(a, b)))
+							select(swap1);
+					} else {
+						int a = swap1 / 7;
+						int b = (swap1 - 28) % 6;
+						System.out.println(a + "   " + b);
+						if (g1.GetTopCardTab(a).equals(g1.GetCardTab(a, b)))
+							select(swap1);
+					}
+
+				} else {
+					unselect(swap1);
+					swap2 = x;
+
+				}
+
+			} else if (x > 51 && x < 56) {
+				swap1 = x;
+				System.out.println("Cannot select Homecell" + x);
+			} else {
+				if (swapcount % 2 == 0) {
+
+					swap1 = null;
+					swap2 = null;
+
+				}
+				if (swap1 == null) {
+					swap1 = x;
+
+					select(x);
+
+				} else
+					unselect(swap1);
+			}
 
 		}
+
 		swapcount++;
 	}
 
@@ -362,10 +413,12 @@ public class GUI implements ActionListener {
 		// TODO Auto-generated method stub
 		// TODO Auto-generated method stub
 		if (e.getSource() == FreeCell) {
-			FreeCell();
+			game = 1;
+			g1 = FreeCell();
 		}
 		if (e.getSource() == BakersDozen) {
-			BakersDozen();
+			game = 2;
+			g2 = BakersDozen();
 		}
 		if (e.getSource() == Quit) {
 			System.exit(0);

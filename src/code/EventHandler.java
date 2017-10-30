@@ -21,12 +21,13 @@ public class EventHandler implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		// TODO Auto-generated method stub
-		if (x < 52)
+		if (x < 52) {
 			System.out.println(a.file.get(x) + " 	" + x);
-		else
-			System.out.println(a._viewBoard.get(x));
+			a.drag(x);
+		} else {
 
-		a.drag(x);
+			a.drag(x);
+		}
+
 	}
-
 }
