@@ -18,7 +18,7 @@ public class EventHandler implements ActionListener {
 		a = gui;
 	}
 /**
- * Sends the index of the selected card back to the GUI
+ * Sends the index of the selected card back to the GUI.
  */
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
