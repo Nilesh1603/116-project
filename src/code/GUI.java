@@ -480,7 +480,10 @@ public class GUI implements ActionListener {
 			_viewBoard.set(swap12, null);
 		}
 	}
-
+	/**
+	 * Creates Menu items: FreeCell, Bakers, Exit, EasterEgg
+	 * 
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
