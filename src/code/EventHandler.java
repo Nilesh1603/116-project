@@ -9,7 +9,7 @@ import javax.swing.JButton;
 public class EventHandler implements ActionListener {
 	GUI a;
 	Integer x;
-
+	
 	public EventHandler(int i, GUI gui) {
 		// TODO Auto-generated constructor stub
 
@@ -17,10 +17,13 @@ public class EventHandler implements ActionListener {
 
 		a = gui;
 	}
-
+/**
+ * Sends the index of the selected card back to the GUI
+ */
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		// TODO Auto-generated method stub
+		//FreeCell
 	if(a.game==1){
 		if (x < 52) {
 			System.out.println(a.file.get(x) + " 	" + x);
@@ -30,6 +33,7 @@ public class EventHandler implements ActionListener {
 			a.drag(x);
 		}
 	}
+		//BakersDozen
 	if(a.game==2){
 		if (x < 52) {
 			System.out.println(a.file.get(x) + " 	" + x);
