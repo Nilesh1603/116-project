@@ -137,7 +137,10 @@ public class GUI implements ActionListener {
 			_frame.setVisible(true);
 		}
 	}
-
+/**
+ * 
+ * Creates new JFrame for the FreeCell game, adds all elementss
+ */
 	public Freecell FreeCell() {
 		// TODO Auto-generated method stub
 
@@ -255,7 +258,10 @@ public class GUI implements ActionListener {
 		return game1;
 
 	}
-
+/**
+ * 
+ * Creates new JFrame for the BakersDozen game, adds all elements
+ */
 	public BakersDozengame BakersDozen() {
 		// TODO Auto-generated method stub
 
@@ -357,7 +363,9 @@ public class GUI implements ActionListener {
 	public void update() {
 
 	}
-
+/**
+ * FreeCell card selection/unselection
+ */
 	public void drag(int x) {
 
 		if (x < 52) {
@@ -422,7 +430,10 @@ public class GUI implements ActionListener {
 		// TODO Auto-generated method stub
 
 	}
-
+/**
+ * 
+ *Bakers selection/unselection
+ */
 	public void drag2(int x) {
 
 		if (x < 52) {
