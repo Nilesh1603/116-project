@@ -93,7 +93,7 @@ public class GUI implements ActionListener {
 		Quit = new JMenuItem("Quit");
 		Quit.addActionListener(this);
 		Menu.add(Quit);
-		Easter = new JMenuItem("Easter");
+		Easter = new JMenuItem("Click for good luck.");
 		Easter.addActionListener(this);
 		Menu.add(Easter);
 		if (_frame == null) {
