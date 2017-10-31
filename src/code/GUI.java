@@ -140,7 +140,7 @@ public class GUI implements ActionListener {
 	}
 /**
  * 
- * Creates new JFrame for the FreeCell game, adds all elementss
+ * Creates new JFrame for the FreeCell game, adds all elements
  */
 	public Freecell FreeCell() {
 		// TODO Auto-generated method stub

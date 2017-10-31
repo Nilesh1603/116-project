@@ -23,7 +23,7 @@ public class EventHandler implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		// TODO Auto-generated method stub
-		//FreeCell
+		//FreeCell game
 	if(a.game==1){
 		if (x < 52) {
 			System.out.println(a.file.get(x) + " 	" + x);
@@ -33,7 +33,7 @@ public class EventHandler implements ActionListener {
 			a.drag(x);
 		}
 	}
-		//BakersDozen
+		//BakersDozen game
 	if(a.game==2){
 		if (x < 52) {
 			System.out.println(a.file.get(x) + " 	" + x);
