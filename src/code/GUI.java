@@ -81,6 +81,7 @@ public class GUI implements ActionListener {
 		JMenu Menu = new JMenu("New Game"); // Create a menu with name
 		// "New
 		// Game"
+		//------
 
 		JMenuBar m = new JMenuBar();
 
