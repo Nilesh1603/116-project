@@ -82,7 +82,7 @@ public class GUI implements ActionListener {
 		JMenu Menu = new JMenu("New Game"); // Create a menu with name
 		// "New
 		// Game"
-		//------
+		// ------
 
 		JMenuBar m = new JMenuBar();
 
@@ -142,10 +142,11 @@ public class GUI implements ActionListener {
 			_frame.setVisible(true);
 		}
 	}
-/**
- * 
- * Creates new JFrame for the FreeCell game, adds all elements
- */
+
+	/**
+	 * 
+	 * Creates new JFrame for the FreeCell game, adds all elements
+	 */
 	public Freecell FreeCell() {
 		// TODO Auto-generated method stub
 
@@ -263,10 +264,11 @@ public class GUI implements ActionListener {
 		return game1;
 
 	}
-/**
- * 
- * Creates new JFrame for the BakersDozen game, adds all elements
- */
+
+	/**
+	 * 
+	 * Creates new JFrame for the BakersDozen game, adds all elements
+	 */
 	public BakersDozengame BakersDozen() {
 		// TODO Auto-generated method stub
 
@@ -368,9 +370,10 @@ public class GUI implements ActionListener {
 	public void update() {
 
 	}
-/**
- * FreeCell card selection/unselection
- */
+
+	/**
+	 * FreeCell card selection/unselection
+	 */
 	public void drag(int x) {
 
 		if (x < 52) {
@@ -435,10 +438,11 @@ public class GUI implements ActionListener {
 		// TODO Auto-generated method stub
 
 	}
-/**
- * 
- *Bakers selection/unselection
- */
+
+	/**
+	 * 
+	 * Bakers selection/unselection
+	 */
 	public void drag2(int x) {
 
 		if (x < 52) {
@@ -496,6 +500,7 @@ public class GUI implements ActionListener {
 			_viewBoard.set(swap12, null);
 		}
 	}
+
 	/**
 	 * Creates Menu items: FreeCell, Bakers, Exit, EasterEgg
 	 * 
@@ -541,8 +546,10 @@ public class GUI implements ActionListener {
 			JLabel b = new JLabel();
 			ImageIcon cardImage;
 			java.net.URL imgURL = this.getClass().getResource("/images/" + "magic" + ".jpg");
-
-			cardImage = new ImageIcon(imgURL);
+			if (imgURL != null)
+				cardImage = new ImageIcon(imgURL);
+			else
+				cardImage = null;
 			// Dimension d = new Dimension(cardImage.getIconWidth() + 10,
 			// cardImage.getIconHeight() + 10);
 			b.setIcon(cardImage);
