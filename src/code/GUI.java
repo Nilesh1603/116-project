@@ -48,6 +48,7 @@ public class GUI implements ActionListener {
 	public Integer swapcount2;
 
 	private JMenuItem Easter;
+	private JMenuItem Easter2;
 	private static final Border UNSELECTED_BORDER = BorderFactory.createEmptyBorder(5, 5, 5, 5);
 	private static final Border SELECTED_BORDER = BorderFactory.createMatteBorder(5, 5, 5, 5, Color.BLACK);
 
@@ -97,6 +98,9 @@ public class GUI implements ActionListener {
 		Easter = new JMenuItem("Click for good luck.");
 		Easter.addActionListener(this);
 		Menu.add(Easter);
+		Easter2 = new JMenuItem("Click for magic!");
+		Easter2.addActionListener(this);
+		Menu.add(Easter2);
 		if (_frame == null) {
 			_frame = new JFrame("Game");
 			Deck cards = new Deck();
@@ -519,6 +523,24 @@ public class GUI implements ActionListener {
 			JLabel b = new JLabel();
 			ImageIcon cardImage;
 			java.net.URL imgURL = this.getClass().getResource("/images/" + "easter" + ".jpg");
+
+			cardImage = new ImageIcon(imgURL);
+			// Dimension d = new Dimension(cardImage.getIconWidth() + 10,
+			// cardImage.getIconHeight() + 10);
+			b.setIcon(cardImage);
+			a.add(b);
+
+			_frame.add(a);
+			_frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			_frame.pack();
+			_frame.setVisible(true);
+		}
+		if (e.getSource() == Easter2) {
+			_frame = new JFrame("Magic");
+			JPanel a = new JPanel();
+			JLabel b = new JLabel();
+			ImageIcon cardImage;
+			java.net.URL imgURL = this.getClass().getResource("/images/" + "magic" + ".jpg");
 
 			cardImage = new ImageIcon(imgURL);
 			// Dimension d = new Dimension(cardImage.getIconWidth() + 10,
