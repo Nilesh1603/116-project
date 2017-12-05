@@ -1,0 +1,41 @@
+
+	//tests if the ace up holds 2 cards initially
+	TabHold2Initially
+	
+	//determines if adding a specific card is legal or illegal
+	 TabAdd() 
+
+	//determines if removing a specific card is legal or illegal
+	TabRemove()
+ 
+	//tests ifAdding card to Ace's Up tableau pile increases its number of cards and results in that card being the tableau pile's new 	//top card
+	TabAddincrease
+	
+	//checks if Removing card from Ace's Up tableau pile decreases its number of cards and results in following card being the new top card
+	 TabRemDecrease() 
+
+	//tests if Homecell pile in Ace's Up initially holds 0 cards
+	 HomeHold0Initially
+	
+	//Ace's Up homecell pile correctly determines if adding a specific card is legal or illegal 
+	 Homeadd() 
+
+	//Ace's Up homecell pile correctly returns if removing top card is legal or illegal 
+	Homeremove
+	
+	//Adding card to Ace's Up homecell pile increases its number of cards and results in that card being the homecell pile's new top card
+	 HomeaddIncrease
+	
+	//Ace's Up stock pile initially holds 48 cards 
+	 StockHold48Initially()
+	
+	//Ace's Up stock pile correctly returns if adding a specific card is legal or illegal 
+	Stockadd() 
+
+	//Ace's Up stock pile correctly returns if removing a specific card is legal or illegal
+	Stockremove() 
+	
+	//Dealing cards from Ace's Up stock pile removes the top 4 cards, adds the removed cards to the tableau piles, and results in the 5th card 	
+	//being the new top card
+	StockremoveDecrease
+		
