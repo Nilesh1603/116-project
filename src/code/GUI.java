@@ -33,9 +33,10 @@ public class GUI implements ActionListener {
 	public JFrame _frame;
 
 	public ArrayList<JButton> _viewBoard;
-
+	public JPanel homecell;
 	public ArrayList<String> file;
-
+	public AceUp g3;
+	public JMenuItem Aceup;
 	public JMenuItem FreeCell;
 	public Freecell g1;
 	public BakersDozengame g2;
@@ -46,9 +47,14 @@ public class GUI implements ActionListener {
 	public Integer swap2;
 	public Integer swapcount;
 	public Integer swapcount2;
+	public JPanel stockcell;
 
 	private JMenuItem Easter;
 	private JMenuItem Easter2;
+
+	public ArrayList<JPanel> Tabace;
+
+	private int stocktotabcount;
 	private static final Border UNSELECTED_BORDER = BorderFactory.createEmptyBorder(5, 5, 5, 5);
 	private static final Border SELECTED_BORDER = BorderFactory.createMatteBorder(5, 5, 5, 5, Color.BLACK);
 
@@ -92,6 +98,9 @@ public class GUI implements ActionListener {
 		BakersDozen = new JMenuItem("BakersDozen");
 		BakersDozen.addActionListener(this);
 		Menu.add(BakersDozen);
+		Aceup = new JMenuItem("Aceup");
+		Aceup.addActionListener(this);
+		Menu.add(Aceup);
 		Quit = new JMenuItem("Quit");
 		Quit.addActionListener(this);
 		Menu.add(Quit);
@@ -341,6 +350,76 @@ public class GUI implements ActionListener {
 
 	}
 
+	public AceUp Ace() {
+		JPanel AceUpgame = new JPanel();
+		JPanel cell = new JPanel();
+		cell.setLayout(new BoxLayout(cell, BoxLayout.Y_AXIS));
+		homecell = new JPanel();
+		stockcell = new JPanel();
+
+		Tabace = new ArrayList<JPanel>();
+		ActionListener x;
+
+		if (g3 == null) {
+			run();
+			AceUp game3 = new AceUp();
+
+			file = new ArrayList<String>();
+			for (int i = 0; i < 4; i++) {
+				Tabace.add(new JPanel());
+				file.add("/images/" + game3.Tableau.get(i).get(0).getRank() + game3.Tableau.get(i).get(0).getSuit()
+						+ ".gif");
+			}
+			for (int i = 0; i < 48; i++) {
+				file.add("/images/" + game3.Stockpile.get(i).getRank() + game3.Stockpile.get(i).getSuit() + ".gif");
+			}
+			_viewBoard = new ArrayList<JButton>();
+			int c = 0;
+
+			for (int j = 0; j < 52; j++) {
+				_viewBoard.add(new JButton());
+				loadAndSetImage(file.get(c), c);
+
+				x = new EventHandler(c, this);
+				_viewBoard.get(c).addActionListener(x);
+				c++;
+			}
+			for (int i = 0; i < 2; i++) {
+				_viewBoard.add(new JButton());
+				loadAndSetImage("/images/" + "Cardback" + ".jpg", c);
+				x = new EventHandler(c, this);
+				_viewBoard.get(c).addActionListener(x);
+				c++;
+			}
+
+			for (int i = 0; i < 4; i++) {
+				Tabace.get(i).setLayout(new BoxLayout(Tabace.get(i), BoxLayout.Y_AXIS));
+				Tabace.get(i).add(_viewBoard.get(i));
+
+			}
+
+			homecell.add(_viewBoard.get(52));
+			stockcell.add(_viewBoard.get(53));
+			g3 = game3;
+		}
+
+		cell.add(homecell);
+		cell.add(stockcell);
+
+		AceUpgame.add(cell);
+		for (int i = 0; i < 4; i++) {
+			AceUpgame.add(Tabace.get(i));
+		}
+		stocktotabcount = 4;
+		_frame.add(AceUpgame);
+		_frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		_frame.pack();
+		_frame.setVisible(true);
+
+		return g3;
+
+	}
+
 	/**
 	 * loadAndSetImage method directly taken from assignment site, displays each
 	 * of the 52 cards in the deck
@@ -519,6 +598,11 @@ public class GUI implements ActionListener {
 			swapcount2 = 0;
 			g2 = BakersDozen();
 		}
+		if (e.getSource() == Aceup) {
+			game = 3;
+			swapcount = 0;
+			g3 = Ace();
+		}
 		if (e.getSource() == Quit) {
 			System.exit(0);
 		}
@@ -560,6 +644,33 @@ public class GUI implements ActionListener {
 			_frame.pack();
 			_frame.setVisible(true);
 		}
+	}
+
+	public void home() {
+		// TODO Auto-generated method stub
+		System.out.println("Error: Cannot select HomeCell");
+	}
+
+	public void stocktotab() {
+		// TODO Auto-generated method stub
+		if (!g3.Stockpile.isEmpty()) {
+
+			for (int i = 0; i < 4; i++) {
+
+				Tabace.get(i).add(_viewBoard.get(stocktotabcount++));
+
+			}
+
+			g3.TableauPileadd(4, 1);
+
+		} else
+			System.out.println("over");
+
+	}
+
+	public void Aceselect(Integer x) {
+		// TODO Auto-generated method stub
+
 	}
 
 }
